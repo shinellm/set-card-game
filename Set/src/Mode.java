@@ -13,6 +13,13 @@ public class Mode {
 	private Drawing dwg;
 	
 	/**
+	 * Default constructor.
+	 */
+	public Mode(){
+		
+	}
+	
+	/**
 	 * Checks to see if the three given cards are a set.
 	 * 
 	 * @param set an arrayList of 3 cards to be checked
