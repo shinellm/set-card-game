@@ -5,6 +5,7 @@
  */
 import java.awt.*;
 import java.util.ArrayList;
+import java.lang.*;
 
 public class Drawing {
 	private ArrayList<Card> onTable = new ArrayList<Card>;
@@ -44,6 +45,21 @@ public class Drawing {
 	 */
 	public void replaceCard(int index, Card card) {
 		onTable.set(index, card);
+	}
+	
+	/**
+	 * Draws (or redraws) each Card, based on the latest chages 
+	 * per the shapes' attributes/params.
+	 * 
+	 * @param: page the graphical component upon which everythin
+	 * is to be drawn.
+	 */
+	public void draw(Graphics page) {
+		int cardsPerRow = 3;
+		for (int i = 0; i < num_cards; i++) {
+			if (((i + 5) % cardsPerRow) == 2)
+			//onTable.get(i).draw(page);
+		}
 	}
 }
 
