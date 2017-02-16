@@ -9,8 +9,11 @@ import java.lang.*;
 
 public class Drawing {
 	private ArrayList<Card> onTable = new ArrayList<Card>;
-	private final int MAX_ARR_LEN = 15;	//The most cards the ArrayList can hold
 	private int num_cards;
+	
+	private final int MAX_ARR_LEN = 15;	//The most cards the ArrayList can hold
+	private final int startX = 30;		//The playing fields's upper-left corner's x-coordinate
+	private final int startY = 30;		//The playing fields's upper-left corner's y-coordinate
 	
 	public Drawing () {
 		num_cards = 0;
@@ -26,7 +29,6 @@ public class Drawing {
 	public void addCard(int index, Card card) {
 		onTable.add(index, card);
 		num_cards += 1;
-		
 	}
 	
 	/**
@@ -46,7 +48,7 @@ public class Drawing {
 	public void replaceCard(int index, Card card) {
 		onTable.set(index, card);
 	}
-	
+
 	/**
 	 * Draws (or redraws) each Card, based on the latest chages 
 	 * per the shapes' attributes/params.
@@ -58,7 +60,7 @@ public class Drawing {
 		int cardsPerRow = 3;
 		for (int i = 0; i < num_cards; i++) {
 			if (((i + 5) % cardsPerRow) == 2)
-			//onTable.get(i).draw(page);
+				onTable.get(i).draw(page, start);
 		}
 	}
 }

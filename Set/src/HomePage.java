@@ -23,8 +23,6 @@ public class HomePage extends JApplet {
 	public void init() {
 		dwg = new Drawing();
 		mode = new Mode();
-		GameZone gamezone= new GameZone();
-		gamezone.setBackground(Color.white);
 		
 		//Make JButton objects for the two modes of play
 		JButton tutorialButton = new JButton("Tutorial");
@@ -54,59 +52,12 @@ public class HomePage extends JApplet {
 	private class TutorialButtonListener implements ActionListener {
 		public void actionPerformed(ActionEvent event) {
 			mode = new Tutorial(dwg);
-			repaint();
 		}
 	}
 	
 	private class SolitaireButtonListener implements ActionListener {
 		public void actionPerformed(ActionEvent event) {
 			mode = new Solitaire(dwg);
-			repaint();
 		}
-	}
-	
-	/**
-	 * Table represents the "table" upon which 
-	 * the game is played. It listens for mouse
-	 * events and calls the appropriate method of
-	 * the current command.
-	 */
-	private class GameZone extends JPanel implements MouseListener, 
-	MouseMotionListener {
-		private static final long serialVersionUID = 0;
-		
-		/**
-		 * Constructor just needs to set up the Table as a listener
-		 */
-		public GameZone() {
-			addMouseListener(this);
-			addMouseMotionListener(this);
-		}
-		
-	    /**
-	     * Paint the whole drawing
-	     * @page the Graphics object to draw on
-	     */
-	    public void paintComponent(Graphics page) {
-	      super.paintComponent(page); // execute the paint method of JPanel
-	      dwg.draw(page); // have the drawing draw itself
-	    }
-	    
-	    /**
-	     * When the mouse is clicked, call the executeClick method of the
-	     * current command.
-	     */
-	    public void mouseClicked(MouseEvent event) {
-	      cmd.executeClick(event.getPoint(), dwg);
-	      repaint();
-	    }
-	    
-	    //We don't care about these
-	    public void mousePressed(MouseEvent event) { }
-	    public void mouseDragged(MouseEvent event) { }
-	    public void mouseReleased(MouseEvent event) { }
-	    public void mouseEntered(MouseEvent event) { }
-	    public void mouseExited(MouseEvent event) { }
-	    public void mouseMoved(MouseEvent event) { }
 	}
 }
