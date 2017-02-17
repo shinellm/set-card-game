@@ -19,17 +19,17 @@ public class Card implements ActionListener{
 	private Shape s2;
 	private Shape s3;
 	
-	public static final int RED = 1;
-	public static final int GREEN = 2; 
-	public static final int BLUE = 3;
+	private static final int RED = 1;
+	private static final int GREEN = 2; 
+	private static final int BLUE = 3;
 	
-	public static final int RECT = 1;
-	public static final int ELLIPSE = 2;
-	public static final int TRIANGLE = 3;
+	private static final int RECT = 1;
+	private static final int ELLIPSE = 2;
+	private static final int TRIANGLE = 3;
 	
-	public static final int SOLID = 1;
-	public static final int EMPTY = 2;
-	public static final int STRIPED = 3;
+	private static final int SOLID = 1;
+	private static final int EMPTY = 2;
+	private static final int STRIPED = 3;
 	
 	private int x;		//x-coordinate of the Card's upper-left corner
 	private int y; 		//y-coordinate of the Card's upper-left corner
@@ -168,21 +168,5 @@ public class Card implements ActionListener{
 	
 	public int getShading() {
 		return shading;
-	}
-	
-	public void setColor(int c) {
-		color = c;
-	}
-	
-	public void setShape(int s) {
-		shape = s;
-	}
-	
-	public void setCount(int c) {
-		count = c;
-	}
-	
-	public void setShading(int s) {
-		shading = s;
 	}
 	}

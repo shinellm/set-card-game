@@ -10,7 +10,7 @@ import java.lang.*;
 import javax.smartcardio.Card;
 
 public class Drawing {
-	private ArrayList<Card> onTable = new ArrayList<Card>;
+	private ArrayList<Card> onTable = new ArrayList<Card>();
 	private int num_cards;
 	
 	private final int CARDS_PER_ROW = 3;
