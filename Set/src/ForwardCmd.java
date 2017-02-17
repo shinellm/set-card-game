@@ -3,7 +3,7 @@ import java.util.ArrayList;
 
 /**
  * ForwardCmd.java
- * Command class for cycling increasing through the sets found in
+ * Command class for cycling increasingly through the sets found in
  * the current cards at play.
  * 
  * @author Shinell Manwaring
