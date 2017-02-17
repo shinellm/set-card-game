@@ -19,26 +19,25 @@ public class Card implements ActionListener{
 	private Shape s2;
 	private Shape s3;
 	
-	private static final int RED = 1;
-	private static final int GREEN = 2; 
-	private static final int BLUE = 3;
+	public static final int RED = 1;
+	public static final int GREEN = 2; 
+	public static final int BLUE = 3;
 	
-	private static final int RECT = 1;
-	private static final int ELLIPSE = 2;
-	private static final int TRIANGLE = 3;
+	public static final int RECT = 1;
+	public static final int ELLIPSE = 2;
+	public static final int TRIANGLE = 3;
 	
-	private static final int SHAPE_HEIGHT = 15;
-	private static final int SHAPE_WIDTH = 10;
-	
-	private static final int SOLID = 1;
-	private static final int EMPTY = 2;
-	private static final int STRIPED = 3;
+	public static final int SOLID = 1;
+	public static final int EMPTY = 2;
+	public static final int STRIPED = 3;
 	
 	private int x;		//x-coordinate of the Card's upper-left corner
 	private int y; 		//y-coordinate of the Card's upper-left corner
 	
 	private final int WIDTH = 40;
 	private final int HEIGHT = 69;
+	private final int SHAPE_HEIGHT = 15;
+	private final int SHAPE_WIDTH = 10;
 	public Card(int cou, int col, int shad, int shap) {
 		count = cou; 
 		color = col;
@@ -63,9 +62,9 @@ public class Card implements ActionListener{
 	 */
 	public void draw(Graphics page, int x_coor, int y_coor) {
 		Color savedColor = page.getColor();
-		
-		page.setColor(Color.LIGHT_GRAY);
 		page.fillRect(x_coor, y_coor, WIDTH, HEIGHT);
+		page.setColor(Color.black);
+		page.drawRect(x_coor,  y_coor, WIDTH, HEIGHT);
 		take_Color(page, x_coor, y_coor)
 		page.setColor(savedColor);
 	}

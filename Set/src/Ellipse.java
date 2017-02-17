@@ -47,12 +47,29 @@ public class Ellipse extends Shape {
   }
 
   /**
-   * Have the Ellipse draw itself.
+   * Have the Ellipse draw itself. Checks 
+   * whether it should be solid, empty,or striped.
    *
    * @param page the page you wish to draw on
+   * @param shading the opcode to determine the
+   * kind of shading of this Shape
    */
   public void drawShape(Graphics page, int shading) {
-    page.fillOval(left, top, width, height);
+	  if (shading == (Card.SOLID || Card.STRIPED)) {
+		page.fillRect(x, y, width, height);
+	  } else (shading == Card.EMPTY) {
+		  page.drawRect(x,  y,  width,  height);
+	  }
+	  
+	  if (shading == Card.STRIPED) {
+		  page.setColor(Color.white);
+		  int i = x;
+		  int j = y;
+		  while (j < y + height) {
+			  page.drawLine(x, j, x + width, j);
+			  j += 3;
+		  }
+	  }
   }
 
   /**

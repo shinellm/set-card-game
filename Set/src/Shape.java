@@ -13,9 +13,9 @@ public abstract class Shape {
   private Color color; // Shape's color
 
   public abstract void drawShape(Graphics page); // draw the Shape
-  public abstract boolean containsPoint(Point p); // does the Shape contain Point p?
-  public abstract void move(int deltaX, int deltaY); // move the Shape
-  public abstract Point getCenter(); // return the Shape's center
+ // public abstract boolean containsPoint(Point p); // does the Shape contain Point p?
+  //public abstract void move(int deltaX, int deltaY); // move the Shape
+  //public abstract Point getCenter(); // return the Shape's center
   
   /**
    * Create a Shape, setting its color. 

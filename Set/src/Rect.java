@@ -3,7 +3,7 @@ import java.awt.*;
 public class Rect extends Shape{
 	private int x, y;
 	private int height, width;
-	public Rect(int x_coor, int y_coor, int w, int h, c) {
+	public Rect(int x_coor, int y_coor, int w, int h, Color c) {
 		super(c);
 		x = x_coor;
 		y = y_coor;
@@ -12,13 +12,28 @@ public class Rect extends Shape{
 	}
 	
 	  /**
-	   * Have the Rect draw itself.
+	   * Have the Rect draw itself. Checks for whether
+	   * it should be solid, empty, or striped.
 	   *
 	   * @param page the page you wish to draw on 
 	   * @param shading the style in which the Shape is to be drawn
 	   */
 	  public void drawShape(Graphics page, int shading) {
+		  if (shading == (Card.SOLID || Card.STRIPED)) {
 			page.fillRect(x, y, width, height);
+		  } else (shading == Card.EMPTY) {
+			  page.drawRect(x,  y,  width,  height);
+		  }
+		  
+		  if (shading == Card.STRIPED) {
+			  page.setColor(Color.white);
+			  int i = x;
+			  int j = y;
+			  while (j < y + height) {
+				  page.drawLine(x, j, x + width, j);
+				  j += 3;
+			  }
+		  }
 	  }
 
 	  /**
