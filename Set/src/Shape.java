@@ -39,12 +39,13 @@ public abstract class Shape {
    * Draw the Shape.
    * 
    * @param page the page you wish to draw the shape on
+   * @param shading the style in which the Shape is to be drawn
    */
-  public void draw(Graphics page) {
-    Color savedColor = page.getColor();
-    page.setColor(color);
-    drawShape(page);
-    page.setColor(savedColor);
+  public void draw(Graphics page, int shading) {
+	Color savedColor = page.getColor();
+	page.setColor(color);
+	drawShape(page, shading);
+	page.setColor(savedColor);
   }
 
   /**

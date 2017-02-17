@@ -15,21 +15,38 @@ public class Card implements ActionListener{
 	private int count;
 	private int shading;	//number code for Card's specific shade pattern: 1 = Solid,
 								//2 = Empty, 3 = Triangle
-	
 	private Shape s1; 	//The actual shape(s) to be drawn on this Card object
 	private Shape s2;
-	private Shape s3
+	private Shape s3;
+	
+	private static final int RED = 1;
+	private static final int GREEN = 2; 
+	private static final int BLUE = 3;
+	
+	private static final int RECT = 1;
+	private static final int ELLIPSE = 2;
+	private static final int TRIANGLE = 3;
+	
+	private static final int SHAPE_HEIGHT = 15;
+	private static final int SHAPE_WIDTH = 10;
+	
+	private static final int SOLID = 1;
+	private static final int EMPTY = 2;
+	private static final int STRIPED = 3;
 	
 	private int x;		//x-coordinate of the Card's upper-left corner
 	private int y; 		//y-coordinate of the Card's upper-left corner
 	
 	private final int WIDTH = 40;
-	private final int HEIGHT = 70;
+	private final int HEIGHT = 69;
 	public Card(int cou, int col, int shad, int shap) {
 		count = cou; 
 		color = col;
 		shading = shad;
 		shape = shap;
+		s1 = null;
+		s2 = null;
+		s3 = null;
 	}
 	
 	/**
@@ -45,13 +62,18 @@ public class Card implements ActionListener{
 	 * @param: y_coor the y-coordinate of this Card
 	 */
 	public void draw(Graphics page, int x_coor, int y_coor) {
+		Color savedColor = page.getColor();
+		
+		page.setColor(Color.LIGHT_GRAY);
 		page.fillRect(x_coor, y_coor, WIDTH, HEIGHT);
-		draw_Shapes1(page, x_coor, y_coor)
+		take_Color(page, x_coor, y_coor)
+		page.setColor(savedColor);
 	}
 	
 	/**
 	 * Helper method for drawing this Car's shape(s)
-	 * onto its surface. 
+	 * onto its surface. Sets the page's coor appropriately,
+	 * for each of the Card's shapes' color.
 	 * 
 	 * @param: page the page on which this Card is to be drawn
 	 * @param: x_coor the x-coordinate of this Card, to then determine
@@ -59,31 +81,109 @@ public class Card implements ActionListener{
 	 * @param: y_coor the y-coordinate of this Card, to then determine
 	 * the coordinates of the Shape(s)
 	 */
-	private void draw_Shapes1(Graphics page, x_coor, y_coor) {
-		Color savedColor = page.getColor();
+	private void take_Color(Graphics page, x_coor, y_coor) {
 		
-		if (color == 1) {
+		if (color == RED) {
 			page.setColor(Color.red);
-		} else if (color == 2) {
+		} else if (color == GREEN) {
 			page.setColor(Color.green);
 		} else {
 			page.setColor(Color.blue);
 		}
 		
-		draw_Shapes2(page, x_coor, y_coor);
-		
-		page.setColor(savedColor);
-	}
-	
-	private void draw_Shapes2 (Graphics page, x_coor, y_coor){
-		if (shape == 1) {
-			s = new Rect()
+		take_Shapes(page, x_coor, y_coor);
+		if (s1 != null) {
+			s1.draw(page, shading);
 		}
-		
-		setShading(s1, s2, s3);
+		if (s2 != null) {
+			s2.draw(page, shading);
+		}
+		if (s3 != null) {
+			s3.draw(page, shading);
+		}
 	}
 	
-	private void setShading (Shape sh1, Shape sh2, Shape sh3) {
+	/**
+	 * Helper method that determines which of the above Shape 
+	 * instance variables are to be instantiated, and as which 
+	 * Shape subclass object. 
+	 * 
+	 * @param: page the page on which this Card is to be drawn
+	 * @param: x_coor the x-coordinate of this Card, to then determine
+	 * the coordinates of the Shape(s)
+	 * @param: y_coor the y-coordinate of this Card, to then determine
+	 */
+	private void take_Shapes(Graphics page, x_coor, y_coor) {
+		Color page_color = page.getColor();
 		
+		if (shape == RECT) {
+			if (count == (1 || 3)) {
+				s1 = new Rect(x_coor + 15, y_coor + 27, WIDTH, HEIGHT, page_color);
+			} 
+			if (count == (2 || 3)) {
+				s2 = new Rect(x_coor + 15, y_coor + 6, WIDTH, HEIGHT, page_color);
+				s3 = new Rect(x_coor + 15, y_coor + 48, WIDTH, HEIGHT, page_color);
+			}
+		} else if (shape == ELLIPSE) {
+			if (count == (1 || 3)) {
+				s1 = new Ellipse(x_coor + 15, y_coor + 27, WIDTH, HEIGHT, page_color);
+			} 
+			if (count == (2 || 3)){
+				s2 = new Ellipse(x_coor + 15, y_coor + 6, WIDTH, HEIGHT, page_color);
+				s3 = new Ellipse(x_coor + 15, y_coor + 48, WIDTH, HEIGHT, page_color);
+			}
+		} else {
+			int [] x1;  //x-coordinates of first triangle
+			int [] y1;	 //y-coordinates of first triangle
+			int [] x2;
+			int [] y2;
+			int [] x3;
+			int [] y3;
+			if (count == (1 || 3)) {
+				x1 = {x_coor + 15 + (SHAPE_WIDTH/2), x_coor + 15, x_coor + 15 + SHAPE_WIDTH};
+				y1 = {y_coor + 19 + SHAPE_WIDTH, y_coor + 19 + (SHAPE_HEIGHT * 2), y_coor + 19 + (SHAPE_HEIGHT * 2)};
+				s1 = new Triangle(x1, y1, 3, page_color);
+				} 
+			if (count == (2 || 3)) {
+					x2 = {x_coor + 15 + (SHAPE_WIDTH/2), x_coor + 15, x_coor + 15 + SHAPE_WIDTH};
+					y2 = {y_coor + 9, y_coor + 9 + SHAPE_HEIGHT, y_coor + 9 + SHAPE_HEIGHT};
+					x3 = {x_coor + 15 + (SHAPE_WIDTH/2), x_coor + 15, x_coor + 15 + SHAPE_WIDTH};
+					y3 = {y_coor + 29 + (SHAPE_WIDTH * 2), y_coor + 29 + (SHAPE_HEIGHT * 3), y_coor + 19 + (SHAPE_HEIGHT * 3)};
+					s2 = new Triangle(x2, y2, 3, page_color);
+					s3 = new Triangle(x3, y3, 3, page_color);
+				}
+			}
+		}
+	
+	public int getColor() {
+		return color;
 	}
-}
+	
+	public int getShape() {
+		return shape;
+	}
+	
+	public int getCount() {
+		return count;
+	}
+	
+	public int getShading() {
+		return shading;
+	}
+	
+	public void setColor(int c) {
+		color = c;
+	}
+	
+	public void setShape(int s) {
+		shape = s;
+	}
+	
+	public void setCount(int c) {
+		count = c;
+	}
+	
+	public void setShading(int s) {
+		shading = s;
+	}
+	}

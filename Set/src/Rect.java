@@ -2,20 +2,22 @@ import java.awt.*;
 
 public class Rect extends Shape{
 	private int x, y;
-	private final int height = 20;
-	private final int width = 10;
-	public Rect(int x_coor, int y_coor, Color c) {
+	private int height, width;
+	public Rect(int x_coor, int y_coor, int w, int h, c) {
 		super(c);
 		x = x_coor;
 		y = y_coor;
+		width = w;
+		height = h;
 	}
 	
 	  /**
 	   * Have the Rect draw itself.
 	   *
-	   * @param page the page you wish to draw on
+	   * @param page the page you wish to draw on 
+	   * @param shading the style in which the Shape is to be drawn
 	   */
-	  public void drawShape(Graphics page) {
+	  public void drawShape(Graphics page, int shading) {
 			page.fillRect(x, y, width, height);
 	  }
 
@@ -55,5 +57,13 @@ public class Rect extends Shape{
 	  
 	  public void setY(int y_coor) {
 		  y = y_coor;
+	  }
+	  
+	  public void setWidth(int w) {
+		  width = w;
+	  }
+	  
+	  public void setHeight(int h) {
+		  height = h;
 	  }
 }
