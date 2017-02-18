@@ -51,7 +51,46 @@ public class Drawing {
 	public void replaceCard(int index, Card card) {
 		onTable.set(index, card);
 	}
+	
+	/**
+	 * Given a Card object, this method
+	 * searches through the Drawing's arraylist-
+	 * representation of cards on the table to find
+	 * the index of the matching card.
+	 * 
+	 * @param: card the Card thats index must be found
+	 * @return: the index of the Card if it is found,
+	 * @return: -1 otherwise
+	 */
+	public int searchTable(Card card) {
+		for (int i = 0; i < num_cards; i++) {
+			if (compareCards(onTable.get(i), card) == true) {
+				return i;
+			}
+		}
+		return -1;
+	}
 
+	/**
+	 * Compares the contents of two cards
+	 * @param: card1 the first Card to be compared
+	 * @param: card2 the second Card to be compared
+	 * @return: true if the two Cards' four fields
+	 * all hold the same values, false otherwise
+	 */
+	private boolean compareCards(Card card1, Card card2) {
+		if (card1.getColor() == card2.getColor()) {
+			if (card1.getShape() == card2.getShape()) {
+				if (card1.getCount() == card2.getCount()) {
+					if (card1.getShading() == card2.getShading()) {
+						return true;
+					}
+				}
+			}
+		}
+		return false;
+	}
+	
 	/**
 	 * Draws (or redraws) each Card, based on the latest chages 
 	 * per the shapes' attributes/params.
