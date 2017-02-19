@@ -15,8 +15,6 @@ public class Drawing {
 	
 	private final int CARDS_PER_ROW = 3;
 	private final int MAX_ARR_LEN = 15;	//The most cards the ArrayList can hold
-	private final int startX = 30;		//The playing fields's upper-left corner's x-coordinate
-	private final int startY = 30;		//The playing fields's upper-left corner's y-coordinate
 	
 	public Drawing () {
 		num_cards = 0;
@@ -92,13 +90,15 @@ public class Drawing {
 	}
 	
 	/**
-	 * Draws (or redraws) each Card, based on the latest chages 
+	 * Draws (or redraws) each Card, based on the latest changes 
 	 * per the shapes' attributes/params.
 	 * 
 	 * @param: page the graphical component upon which everythin
 	 * is to be drawn.
+	 * @param: startX The playing field's upper-left corner's x-coordinate
+	 * @param: startY The playing field's upper-left corner's y-coordinate
 	 */
-	public void draw(Graphics page) {
+	public void draw(Graphics page, int startX, int startY) {
 		for (int i = 0; i < num_cards; i++) {
 			if (((i + 5) % CARDS_PER_ROW) == 2) {
 				onTable.get(i).draw(page, startX + 10, startY + 10 + (80*(i/CARDS_PER_ROW)));

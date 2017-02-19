@@ -31,9 +31,6 @@ public class Card implements ActionListener{
 	private static final int EMPTY = 2;
 	private static final int STRIPED = 3;
 	
-	private int x;		//x-coordinate of the Card's upper-left corner
-	private int y; 		//y-coordinate of the Card's upper-left corner
-	
 	private final int WIDTH = 40;
 	private final int HEIGHT = 69;
 	private final int SHAPE_HEIGHT = 15;
