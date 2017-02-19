@@ -18,10 +18,9 @@ public class Deck {
 	
 	private static Deck uniqueInstance = null;	//The Singleton deck
 	
-	private int currCardPointer;	//The index of the ArrayList of cards, representing the top card
+	private int currCardPointer = 0;	//The index of the ArrayList of cards, representing the top card
 										//on the deck.
 	private Deck() {
-		currCardPointer = 0;
 		int index = 0;
 		for (int i = 1; i < 4; i++) {
 			for (int j = 1; j < 4; j++) {
