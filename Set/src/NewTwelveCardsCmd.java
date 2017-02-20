@@ -17,7 +17,8 @@ public class NewTwelveCardsCmd extends Command {
    * @param dwg the drawing 
    */
   public void executeClick(Drawing dwg) {
-	  
+	  //remove the 12 cards in ArrayList on table
+	  //add 12 new cards to ArrayList on table
 	  
   }
 }

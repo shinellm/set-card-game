@@ -17,7 +17,8 @@ public class AddThreeCmd extends Command {
    * @param dwg the drawing 
    */
   public void executeClick(Drawing dwg) {
-	  
+	  //if length of ArrayList on table < 15:
+	  //take 3 cards from the deck and add it to the ArrayList on table
 	  
   }
 }
