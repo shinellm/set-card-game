@@ -80,6 +80,29 @@ public class Drawing {
 	}
 	
 	/**
+	 * Given a Card, this method searches through
+	 * this Drawing's table ArrayList and compares
+	 * the four fields values with those of each 
+	 * card in the ArrayList.
+	 * 
+	 * @param: card a card, the index for which the
+	 * table ArrayList is being searched.
+	 * @return: the index of the Card if it appears 
+	 * on the table, -1 otherwise.
+	 */
+	public int compareForIndex(Card card) {
+		for (int i = 0; i < num_cards; i++) {
+			if ((card.getCount() == onTable.get(i).getCount())
+				&& (card.getShape() == onTable.get(i).getShape())
+				&& (card.getColor() == onTable.get(i).getColor())
+				&& (card.getShading() == onTable.get(i).getShading())) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	/**
 	 * Returns the Card at the specified index in the
 	 * table ArrayList. Used to get each card in the 
 	 * Drawing's ArrayList, to then see if one of them 
