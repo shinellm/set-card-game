@@ -53,13 +53,25 @@ public class HomePage extends JApplet {
 	
 	private class TutorialButtonListener implements ActionListener {
 		public void actionPerformed(ActionEvent event) {
+			JButton button = (JButton)event.getSource();
+			JPanel panel = (JPanel)button.getParent();
+			panel.remove(0);
+			panel.remove(0);
+			panel.repaint();
+			panel.validate();
 			mode = new Tutorial(dwg);
 		}
 	}
 	
 	private class SolitaireButtonListener implements ActionListener {
 		public void actionPerformed(ActionEvent event) {
-			mode = new Solitaire(dwg);
+			JButton button = (JButton)event.getSource();
+			JPanel panel = (JPanel)button.getParent();
+			panel.remove(0);
+			panel.remove(0);
+			panel.repaint();
+			panel.validate();
+			mode = new Tutorial(dwg);
 		}
 	}
 }
