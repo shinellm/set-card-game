@@ -7,51 +7,74 @@
  *
  */
 import java.util.ArrayList;
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
 
 public class Mode {
 
 	private Drawing dwg;
+	private Container cp;
+	private Command cmd;
 	
 	/**
 	 * Default constructor.
-	 */
-	public Mode(){
-		
-	}
-	
-	/**
-	 * Checks to see if the three given cards are a set.
 	 * 
-	 * @param set an arrayList of 3 cards to be checked
-	 * @return true if the cards are a set
-	 * 		   false if the cards are not a set
+	 *  @param dwg a drawing object
+	 *  @param cp a container object
 	 */
-	public boolean isSet(ArrayList<Card> set){
+	public Mode(Drawing dwg, Container cp){
+		dwg = this.dwg;
+		cp = this.cp;
+		cmd = new Command();
 		
-		return false;
-	}
-	
-	/**
-	 * Finds all of the sets in the cards on the table.
-	 * 
-	 * @return a multi-dimensional arrayList containing 
-	 * 		all of the sets found
-	 */
-	public ArrayList<ArrayList<Card>> getAllSets(){
-		return null;
-	}
-	
-	/**
-	 * Go back to main screen
-	 */
-	public void back_home(){
+		//Make JButton objects for the two modes of play
+		JButton homeButton = new JButton("Home");
+		JButton restartButton = new JButton("Restart");
 		
-	}
-	
-	/**
-	 * Restart current mode. 
-	 */
-	public void restart(){
+		//Add listeners to the two Modes subclass buttons
+		homeButton.addActionListener(new HomeButtonListener());
+		restartButton.addActionListener(new RestartButtonListener());
+		
+		//The two buttons will be adjacent to one another, in one row of two
+		JPanel optionPanel = new JPanel(); //Holds the buttons horizontally
+		optionPanel.setLayout(new FlowLayout());
+		homeButton.setBackground(Color.green);
+		restartButton.setBackground(Color.green);
+		optionPanel.add(homeButton);
+		optionPanel.add(restartButton);
+		
+		cp.add(optionPanel, BorderLayout.CENTER);
 		
 	}
+	
+	private class HomeButtonListener implements ActionListener {
+		public void actionPerformed(ActionEvent event) {
+			JButton button = (JButton)event.getSource();
+			JPanel panel = (JPanel)button.getParent();
+			panel.remove(0);
+			panel.remove(0);
+			panel.repaint();
+			panel.validate();
+			Container cp = (Container)panel.getParent();
+			cp.remove(0);
+			cmd = new QuitCmd();
+		}
+	}
+		
+	private class RestartButtonListener implements ActionListener {
+		public void actionPerformed(ActionEvent event) {
+			JButton button = (JButton)event.getSource();
+			JPanel panel = (JPanel)button.getParent();
+			panel.remove(0);
+			panel.remove(0);
+			panel.repaint();
+			panel.validate();
+			Container cp = (Container)panel.getParent();
+			cp.remove(0);
+			cmd = new RestartCmd();
+			}
+	}
+	
+
 }
