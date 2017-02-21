@@ -1,6 +1,8 @@
 import java.awt.*;
 import java.util.ArrayList;
 
+import javax.smartcardio.Card;
+
 /**
  * SelectThreeCardsCmd.java
  * Command class to highlight cards, store their index as they're selected, and
@@ -12,7 +14,17 @@ import java.util.ArrayList;
 
 public class SelectThreeCardsCmd extends Command {
 	private ArrayList<Card> threeCards; // the index of the three cards selected in Solitaire
-
+	private Point point; // The point of the selected card
+	  
+	  /**
+	   * Creates a private int to hold the point of the selected card.
+	   * 
+	   * @param arr an ArrayList of cards, which make a set 
+	   */
+	  public SelectThreeCardsCmd (Point p){
+		  point = p;
+	  }	
+	
 	/**
 	 * When a card is selected in Solitaire mode, the card's index is store in the
 	 * the array. The card itself is also highlighted on the table. Once there are three
@@ -24,7 +36,7 @@ public class SelectThreeCardsCmd extends Command {
 	 * @param dwg the drawing 
 	 */
 	public void executeClick(Drawing dwg) {
-		int i = dwg.searchTable(p); // Find the index of the card containing p.
+		int i = dwg.searchTable(point); // Find the index of the card containing p.
 		Card c = dwg.getCard(i); // Find the card at index i.
 		Deck deck = Deck.getUniqueInstance();
 
