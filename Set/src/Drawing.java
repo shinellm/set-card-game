@@ -39,6 +39,7 @@ public class Drawing {
 	 * card-to-be-removed is located.
 	 */
 	public void removeCard(int index) {
+		onTable.get(index).unhighlight();
 		onTable.remove(index);
 		num_shapes = num_shapes - 1;
 	}
@@ -47,7 +48,15 @@ public class Drawing {
 	 * Replaces the card at the specified index
 	 */
 	public void replaceCard(int index, Card card) {
+		onTable.get(index).unhighlight();
 		onTable.set(index, card);
+	}
+	
+	/**
+	 * Returns the onTable Card ArrayList
+	 */
+	public ArrayList<Card> getTable() {
+		return onTable;
 	}
 	
 	/**
@@ -56,17 +65,29 @@ public class Drawing {
 	 * representation of cards on the table to find
 	 * the index of the matching card.
 	 * 
-	 * @param: card the Card thats index must be found
+	 * @param: p the Point at which the actionEvent occurred,
+	 * assuming the click in the canvas was meant for a Card object.
 	 * @return: the index of the Card if it is found,
 	 * @return: -1 otherwise
 	 */
-	public int searchTable(Card card) {
+	public int searchTable(Point p) {
 		for (int i = 0; i < num_cards; i++) {
-			if (compareCards(onTable.get(i), card) == true) {
+			if (onTable.get(i).containsPoint() == true) {
 				return i;
 			}
 		}
 		return -1;
+	}
+	
+	/**
+	 * Returns the Card at the specified index in the
+	 * table ArrayList. Used to get each card in the 
+	 * Drawing's ArrayList, to then see if one of them 
+	 * contains the point at which a click on the canvas
+	 * in Solitaire mode occurred.
+	 */
+	public Card getCard(int index) {
+		return arr.get(index);
 	}
 
 	/**
@@ -86,6 +107,51 @@ public class Drawing {
 				}
 			}
 		}
+		return false;
+	}
+	
+	/**
+	 * Given three unique Card objects, checks 
+	 * to see if together, they constitute a 
+	 * valid set.
+	 * 
+	 * @param: list the ArrayList containing the three
+	 * Cards to be checked for sethood
+	 * @return: true if they do make a set, false otherwise
+	 */
+	public boolean isASet(ArrayList<Card> list) {
+		Card card1 = list.get(0);
+		Card card2 - list.get(1);
+		Card card3 = list.get(2);
+		
+		if (allOrNothing(card1.getColor(), card2.getColor(), card3.getColor())
+				&& allOrNothing(card1.getShape(), card2.getShape(), card3.getShape())
+				&& allOrNothing(card1.getCount(), card2.getCount(), card3.getCount())
+				&& allOrNothing(card1.getShading(), card2.getShading(), card3.getShading())) {
+			return true;
+		}
+		
+		return false;
+	}
+	
+	/**
+	 * Helper method that checks whether or not given 
+	 * three values, they are either all the same or 
+	 * all different
+	 * 
+	 * @param: one the first value to be compared
+	 * @param: two the second value
+	 * @param: three the third value
+	 * @returns: true if one, two, and three are all equal
+	 * or all unequal, false otherwise
+	 */
+	private boolean allOrNothing(int one, int two, int three) {
+		if ((one == two) && (one == three) && (two == three)) {
+			return true;
+		} else if ((one != two ) && (one != three) && (two != three)) {
+			return true;
+		} 
+		
 		return false;
 	}
 	

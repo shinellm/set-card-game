@@ -19,20 +19,26 @@ public class Card implements ActionListener{
 	private Shape s2;
 	private Shape s3;
 	
-	private static final int RED = 1;
-	private static final int GREEN = 2; 
-	private static final int BLUE = 3;
+	private int x;		//The x-coordinate of a Card's upper-left corner
+	private int y;		//The y-coordinate of a Card's upper-left corner
 	
-	private static final int RECT = 1;
-	private static final int ELLIPSE = 2;
-	private static final int TRIANGLE = 3;
+	private boolean highlighted;
 	
-	private static final int SOLID = 1;
-	private static final int EMPTY = 2;
-	private static final int STRIPED = 3;
+	public static final int RED = 1;
+	public static final int GREEN = 2; 
+	public static final int BLUE = 3;
 	
-	private final int WIDTH = 40;
-	private final int HEIGHT = 69;
+	public static final int RECT = 1;
+	public static final int ELLIPSE = 2;
+	public static final int TRIANGLE = 3;
+	
+	public static final int SOLID = 1;
+	public static final int EMPTY = 2;
+	public static final int STRIPED = 3;
+	
+	public static final int WIDTH = 40;
+	public static final int HEIGHT = 69;
+	
 	private final int SHAPE_HEIGHT = 15;
 	private final int SHAPE_WIDTH = 10;
 	public Card(int cou, int col, int shad, int shap) {
@@ -43,6 +49,7 @@ public class Card implements ActionListener{
 		s1 = null;
 		s2 = null;
 		s3 = null;
+		highlighted = false;
 	}
 	
 	/**
@@ -58,11 +65,19 @@ public class Card implements ActionListener{
 	 * @param: y_coor the y-coordinate of this Card
 	 */
 	public void draw(Graphics page, int x_coor, int y_coor) {
+		x = x_coor;					//Sets the x-coordinate of this Card
+		y = y_coor;					//Sets the y-coordinate of this Card
 		Color savedColor = page.getColor();
-		page.fillRect(x_coor, y_coor, WIDTH, HEIGHT);
-		page.setColor(Color.black);
-		page.drawRect(x_coor,  y_coor, WIDTH, HEIGHT);
-		take_Color(page, x_coor, y_coor)
+		page.fillRect(x, y, WIDTH, HEIGHT);
+		
+		if (highlighted == true) {
+			page.setColor(Color.green);
+		} else {
+			page.setColor(Color.black);
+		}
+		
+		page.drawRect(x,  y, WIDTH, HEIGHT);
+		take_Color(page)
 		page.setColor(savedColor);
 	}
 	
@@ -72,12 +87,8 @@ public class Card implements ActionListener{
 	 * for each of the Card's shapes' color.
 	 * 
 	 * @param: page the page on which this Card is to be drawn
-	 * @param: x_coor the x-coordinate of this Card, to then determine
-	 * the coordinates of the Shape(s)
-	 * @param: y_coor the y-coordinate of this Card, to then determine
-	 * the coordinates of the Shape(s)
 	 */
-	private void take_Color(Graphics page, x_coor, y_coor) {
+	private void take_Color(Graphics page) {
 		
 		if (color == RED) {
 			page.setColor(Color.red);
@@ -87,7 +98,7 @@ public class Card implements ActionListener{
 			page.setColor(Color.blue);
 		}
 		
-		take_Shapes(page, x_coor, y_coor);
+		take_Shapes(page);
 		if (s1 != null) {
 			s1.draw(page, shading);
 		}
@@ -105,28 +116,25 @@ public class Card implements ActionListener{
 	 * Shape subclass object. 
 	 * 
 	 * @param: page the page on which this Card is to be drawn
-	 * @param: x_coor the x-coordinate of this Card, to then determine
-	 * the coordinates of the Shape(s)
-	 * @param: y_coor the y-coordinate of this Card, to then determine
 	 */
-	private void take_Shapes(Graphics page, x_coor, y_coor) {
+	private void take_Shapes(Graphics page) {
 		Color page_color = page.getColor();
 		
 		if (shape == RECT) {
 			if (count == (1 || 3)) {
-				s1 = new Rect(x_coor + 15, y_coor + 27, WIDTH, HEIGHT, page_color);
+				s1 = new Rect(x + 15, y + 27, WIDTH, HEIGHT, page_color);
 			} 
 			if (count == (2 || 3)) {
-				s2 = new Rect(x_coor + 15, y_coor + 6, WIDTH, HEIGHT, page_color);
-				s3 = new Rect(x_coor + 15, y_coor + 48, WIDTH, HEIGHT, page_color);
+				s2 = new Rect(x + 15, y + 6, WIDTH, HEIGHT, page_color);
+				s3 = new Rect(x + 15, y + 48, WIDTH, HEIGHT, page_color);
 			}
 		} else if (shape == ELLIPSE) {
 			if (count == (1 || 3)) {
-				s1 = new Ellipse(x_coor + 15, y_coor + 27, WIDTH, HEIGHT, page_color);
+				s1 = new Ellipse(x + 15, y + 27, WIDTH, HEIGHT, page_color);
 			} 
 			if (count == (2 || 3)){
-				s2 = new Ellipse(x_coor + 15, y_coor + 6, WIDTH, HEIGHT, page_color);
-				s3 = new Ellipse(x_coor + 15, y_coor + 48, WIDTH, HEIGHT, page_color);
+				s2 = new Ellipse(x + 15, y + 6, WIDTH, HEIGHT, page_color);
+				s3 = new Ellipse(x + 15, y + 48, WIDTH, HEIGHT, page_color);
 			}
 		} else {
 			int [] x1;  //x-coordinates of first triangle
@@ -136,20 +144,30 @@ public class Card implements ActionListener{
 			int [] x3;
 			int [] y3;
 			if (count == (1 || 3)) {
-				x1 = {x_coor + 15 + (SHAPE_WIDTH/2), x_coor + 15, x_coor + 15 + SHAPE_WIDTH};
-				y1 = {y_coor + 19 + SHAPE_WIDTH, y_coor + 19 + (SHAPE_HEIGHT * 2), y_coor + 19 + (SHAPE_HEIGHT * 2)};
+				x1 = {x + 15 + (SHAPE_WIDTH/2), x + 15, x + 15 + SHAPE_WIDTH};
+				y1 = {y + 19 + SHAPE_WIDTH, y + 19 + (SHAPE_HEIGHT * 2), y + 19 + (SHAPE_HEIGHT * 2)};
 				s1 = new Triangle(x1, y1, 3, page_color);
 				} 
 			if (count == (2 || 3)) {
-					x2 = {x_coor + 15 + (SHAPE_WIDTH/2), x_coor + 15, x_coor + 15 + SHAPE_WIDTH};
-					y2 = {y_coor + 9, y_coor + 9 + SHAPE_HEIGHT, y_coor + 9 + SHAPE_HEIGHT};
-					x3 = {x_coor + 15 + (SHAPE_WIDTH/2), x_coor + 15, x_coor + 15 + SHAPE_WIDTH};
-					y3 = {y_coor + 29 + (SHAPE_WIDTH * 2), y_coor + 29 + (SHAPE_HEIGHT * 3), y_coor + 19 + (SHAPE_HEIGHT * 3)};
+					x2 = {x + 15 + (SHAPE_WIDTH/2), x + 15, x + 15 + SHAPE_WIDTH};
+					y2 = {y + 9, y + 9 + SHAPE_HEIGHT, y + 9 + SHAPE_HEIGHT};
+					x3 = {x + 15 + (SHAPE_WIDTH/2), x + 15, x + 15 + SHAPE_WIDTH};
+					y3 = {y + 29 + (SHAPE_WIDTH * 2), y + 29 + (SHAPE_HEIGHT * 3), y + 19 + (SHAPE_HEIGHT * 3)};
 					s2 = new Triangle(x2, y2, 3, page_color);
 					s3 = new Triangle(x3, y3, 3, page_color);
 				}
 			}
 		}
+	
+	  /**
+	   * Return true if the Rect contains Point p, false otherwise.
+	   * 
+	   * @param p point tested for containment
+	   */
+	  public boolean containsPoint(Point p) {
+		  return (p.x >= x && p.x <= (x + WIDTH)
+				  && p.y >= y && p.y <= (y + HEIGHT));
+	  }
 	
 	public int getColor() {
 		return color;
@@ -165,5 +183,21 @@ public class Card implements ActionListener{
 	
 	public int getShading() {
 		return shading;
+	}
+	
+	public int getX() {
+		return x;
+	}
+	
+	public getY() {
+		return y;
+	}
+	
+	public void highlight() {
+		highlighted = true;
+	}
+	
+	public void unhighlight() {
+		highlighted = false;
 	}
 	}

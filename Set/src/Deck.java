@@ -40,6 +40,7 @@ public class Deck {
 	 * number generator
 	 */
 	public void shuffle() {
+		index = 0;
 		Random randomno = new Random();
 		int topCard = TOTAL_CARDS;
 		for (int i = TOTAL_CARDS - 1; i >= 0; i--) {
