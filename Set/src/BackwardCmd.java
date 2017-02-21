@@ -11,8 +11,13 @@ import java.util.ArrayList;
  */
 
 public class BackwardCmd extends Command {
-  private ArrayList<Card> setOfThree; // The three cards, which make a set
+  private ArrayList<Card> setOfThree = new ArrayList<Card>(); // The three cards, which make a set
   
+  public BackwardCmd(ArrayList<Card> arr) {
+	  for (int i = 0; i < 3; i++) {
+		  setOfThree.add(i, arr.get(i));
+	  }
+  }
   /**
    * When the backward arrow button is clicked, display the previously seen set that exists
    * within the cards at play. If there are no more sets to display, clicking the backward
@@ -21,7 +26,9 @@ public class BackwardCmd extends Command {
    * @param dwg the drawing 
    */
   public void executeClick(Drawing dwg) {
-	  
-	  
+	  for (int i = 0; i < setOfThree.size(); i++) {
+		  int tracker = compareForIndex(setOfThree.get(i));
+		  dwg.getCard(tracker).highlight();
+	  }
   }
 }
