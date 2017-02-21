@@ -17,8 +17,10 @@ public class NewTwelveCardsCmd extends Command {
    * @param dwg the drawing 
    */
   public void executeClick(Drawing dwg) {
-	  //remove the 12 cards in ArrayList on table
-	  //add 12 new cards to ArrayList on table
-	  
+	  Deck deck = Deck.getUniqueInstance();
+	  for (int i = 0; i < 12; i++) {
+		  Card card = deck.deal();
+		  dwg.replaceCard(i, card);
+	  }
   }
 }

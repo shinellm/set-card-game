@@ -52,7 +52,8 @@ public class Drawing {
 	 */
 	public void replaceCard(int index, Card card) {
 		onTable.get(index).unhighlight();
-		onTable.set(index, card);
+		onTable.remove(index);
+		onTable.add(index, card);
 	}
 	
 	/**
