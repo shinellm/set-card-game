@@ -16,7 +16,6 @@ public class Mode {
 	private Drawing dwg;
 	private Container cp;
 	private Command cmd;
-	protected CanvasPanel canvas;
 	
 	/**
 	 * Default constructor.
@@ -46,24 +45,7 @@ public class Mode {
 		optionPanel.add(restartButton);
 		
 		cp.add(optionPanel, BorderLayout.NORTH);
-		
-		// The cards will appear in a CanvasPanel.
-	    canvas = new CanvasPanel();
-	    canvas.setBackground(Color.blue);
-	    cp.add(canvas, BorderLayout.CENTER);
-		
 	}
-	
-    /**
-     * Paint the whole drawing
-     * @page the Graphics object to draw on
-     * 
-     * From project 1
-     */
-    public void paintComponent(Graphics page) {
-      super.paintComponent(page); // execute the paint method of JPanel
-      dwg.draw(page); // have the drawing draw itself
-    }
 	
 	private class HomeButtonListener implements ActionListener {
 		public void actionPerformed(ActionEvent event) {
@@ -81,66 +63,7 @@ public class Mode {
 		
 	private class RestartButtonListener implements ActionListener {
 		public void actionPerformed(ActionEvent event) {
-			JButton button = (JButton)event.getSource();
-			JPanel panel = (JPanel)button.getParent();
-			panel.remove(0);
-			panel.remove(0);
-			panel.repaint();
-			panel.validate();
-			Container cp = (Container)panel.getParent();
-			cp.remove(0);
 			cmd = new RestartCmd();
 			}
 	}
-	
-	
-	/** 
-	   * CanvasPanel is the class upon which we actually draw.  It listens
-	   * for mouse events and calls the appropriate method of the current
-	   * command. (From Project 1)
-	   */ 
-	  private class CanvasPanel extends JPanel implements MouseListener,
-	      MouseMotionListener {
-	    private static final long serialVersionUID = 0;
-	    
-	    /**
-	     * Constructor just needs to set up the CanvasPanel as a listener.
-	     */
-	    public CanvasPanel() {
-	      addMouseListener(this);
-	      addMouseMotionListener(this);
-	    }
-
-	    /**
-	     * Paint the whole drawing
-	     * @page the Graphics object to draw on
-	     */
-	    public void paintComponent(Graphics page) {
-	      super.paintComponent(page); // execute the paint method of JPanel
-	      dwg.draw(page); // have the drawing draw itself
-	    }
-
-	    /**
-	     * When the mouse is clicked, call the executeClick method of the
-	     * current command.
-	     */
-	    public void mouseClicked(MouseEvent event) {
-	      cmd.executeClick(event.getPoint(), dwg);
-	      repaint();
-	    }
-
-	    // We don't care about the other mouse events.
-	    public void mouseDragged(MouseEvent event) { }
-	    public void mousePressed(MouseEvent event) { }
-	    public void mouseReleased(MouseEvent event) { }
-	    public void mouseEntered(MouseEvent event) { }
-	    public void mouseExited(MouseEvent event) { }
-	    public void mouseMoved(MouseEvent event) { }
-	  }
-	
-
-	
-	
-	
-
 }

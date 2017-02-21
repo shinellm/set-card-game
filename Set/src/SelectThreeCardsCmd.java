@@ -12,6 +12,7 @@ import java.util.ArrayList;
 
 public class SelectThreeCardsCmd extends Command {
 	private ArrayList<Card> threeCards; // the index of the three cards selected in Solitaire
+
 	/**
 	 * When a card is selected in Solitaire mode, the card's index is store in the
 	 * the array. The card itself is also highlighted on the table. Once there are three
@@ -22,7 +23,7 @@ public class SelectThreeCardsCmd extends Command {
 	 * @param p the coordinates of the click
 	 * @param dwg the drawing 
 	 */
-	public void executeClick(Point p, Drawing dwg) {
+	public void executeClick(Drawing dwg) {
 		int i = dwg.searchTable(p); // Find the index of the card containing p.
 		Card c = dwg.getCard(i); // Find the card at index i.
 

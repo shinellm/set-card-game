@@ -12,8 +12,9 @@ import javax.swing.*;
 
 public class Tutorial extends Mode {
 
-	public Drawing dwg;
+	private Drawing dwg;
 	private Command cmd;
+	private int multiArrIndex;
 	
 	/**
 	 * Constructor 
@@ -22,11 +23,15 @@ public class Tutorial extends Mode {
 	 */
 	public Tutorial(Drawing dwg, Container cp){
 		super(dwg, cp);
+		cmd = new Command();
+		multiArrIndex = 0;
 		
 		//Make JButton objects for the two modes of play
 		JButton forwardButton = new JButton("Previous Set");
 		JButton backwardButton = new JButton("Next Set");
 		JButton next12Button = new JButton("Next 12 Cards");
+		
+		backwardButton.setEnable(false);	//Cannot allow the user to try and call negative indices in the array
 				
 		//Add listeners to the two Modes subclass buttons
 		forwardButton.addActionListener(new ForwardButtonListener());
@@ -44,62 +49,38 @@ public class Tutorial extends Mode {
 		optionPanel.add(next12Button);
 				
 		cp.add(optionPanel, BorderLayout.NORTH);
-		
 	}
 
 	
 	
 	private class ForwardButtonListener implements ActionListener {
 		public void actionPerformed(ActionEvent event) {
-			JButton button = (JButton)event.getSource();
-			JPanel panel = (JPanel)button.getParent();
-			panel.remove(0);
-			panel.remove(0);
-			panel.repaint();
-			panel.validate();
-			Container cp = (Container)panel.getParent();
-			cp.remove(0);
 			cmd = new ForwardCmd();
+			cmd.executeClick(dwg);
+			multiArrIndex += 1;
+			repaint();
 			}
 	}
 	
 	private class BackwardButtonListener implements ActionListener {
 		public void actionPerformed(ActionEvent event) {
 			JButton button = (JButton)event.getSource();
-			JPanel panel = (JPanel)button.getParent();
-			panel.remove(0);
-			panel.remove(0);
-			panel.repaint();
-			panel.validate();
-			Container cp = (Container)panel.getParent();
-			cp.remove(0);
-			cmd = new BackwardCmd();
+			
+			if (index >= 1) {
+				button.setEnable(true);
+				cmd = new BackwardCmd();
+				cmd.executeClick(dwg);
+				multiArrIndex = multiArrIndex - 1;
+				repaint();
 			}
+		}
 	}
 	
 	private class Next12ButtonListener implements ActionListener {
 		public void actionPerformed(ActionEvent event) {
-			JButton button = (JButton)event.getSource();
-			JPanel panel = (JPanel)button.getParent();
-			panel.remove(0);
-			panel.remove(0);
-			panel.repaint();
-			panel.validate();
-			Container cp = (Container)panel.getParent();
-			cp.remove(0);
 			cmd = new NewTwelveCardsCmd();
+			cmd.executeClick(dwg);
+			repaint();
 			}
-	}
-	
-	
-	/**
-	 * 
-	 */
-	public void paintComponent(){
-		
-	}
-	
-	private void actionPerformed(){
-		
 	}
 }

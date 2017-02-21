@@ -14,7 +14,7 @@ import javax.smartcardio.Card;
 
 public class Deck {
 	private ArrayList <Card> arr = new ArrayList<Card>();
-	private static final int TOTAL_CARDS = 81;
+	public static final int TOTAL_CARDS = 81;
 	
 	private static Deck uniqueInstance = null;	//The Singleton deck
 	
@@ -40,7 +40,7 @@ public class Deck {
 	 * number generator
 	 */
 	public void shuffle() {
-		index = 0;
+		currCardPointer = 0;
 		Random randomno = new Random();
 		int topCard = TOTAL_CARDS;
 		for (int i = TOTAL_CARDS - 1; i >= 0; i--) {

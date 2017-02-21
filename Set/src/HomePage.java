@@ -61,7 +61,7 @@ public class HomePage extends JApplet {
 			panel.validate();
 			Container cp = (Container)panel.getParent();
 			cp.remove(0);
-			mode = new Tutorial(dwg);
+			mode = new Tutorial(dwg, cp);
 		}
 	}
 	
@@ -75,7 +75,7 @@ public class HomePage extends JApplet {
 			panel.validate();
 			Container cp = (Container)panel.getParent();
 			cp.remove(0);
-			mode = new Solitaire(dwg);
+			mode = new Solitaire(dwg, cp);
 		}
 	}
 }

@@ -25,6 +25,9 @@ public class Solitaire extends Mode {
 	 */
 	public Solitaire(Drawing dwg, Container cp) {
 		super(dwg, cp);
+		cmd = new Command()
+		CanvasPanel canvasPanel = new CanvasPanel();
+		canvasPanel.setBackground(Color.white);
 		
 		//Make JButton objects for the two modes of play
 		JButton hintButton = new JButton("Hint");
@@ -43,40 +46,25 @@ public class Solitaire extends Mode {
 		optionPanel.add(add3CardsButton);
 				
 		cp.add(optionPanel, BorderLayout.NORTH);
-		
-		
+		cp.add(canvasPanel, BorderLayout.CENTER);
 	}
 	
 	
 	private class HintButtonListener implements ActionListener {
 		public void actionPerformed(ActionEvent event) {
-			JButton button = (JButton)event.getSource();
-			JPanel panel = (JPanel)button.getParent();
-			panel.remove(0);
-			panel.remove(0);
-			panel.repaint();
-			panel.validate();
-			Container cp = (Container)panel.getParent();
-			cp.remove(0);
 			cmd = new HintCmd();
+			cmd.executeClick(dwg);
+			repaint();
 		}
 	}
 		
 	private class Add3CardsButtonListener implements ActionListener {
 		public void actionPerformed(ActionEvent event) {
-			JButton button = (JButton)event.getSource();
-			JPanel panel = (JPanel)button.getParent();
-			panel.remove(0);
-			panel.remove(0);
-			panel.repaint();
-			panel.validate();
-			Container cp = (Container)panel.getParent();
-			cp.remove(0);
 			cmd = new AddThreeCmd();
+			cmd.executeClick(dwg);
+			repaint();
 			}
 	}
-	
-	
 	
 	/**
 	 * Adds three cards to play upon request
@@ -92,22 +80,52 @@ public class Solitaire extends Mode {
 		
 	}
 	
-	/**
-	 * ????
-	 */
-	public void paintComponent(){
-		
-	}
 	
 	private int getCardsClicked(){
 		return 0;
 	}
 	
-	private void actionPerformed(){
-		
-	}
-	
+	/** 
+	   * CanvasPanel is the class upon which we actually draw.  It listens
+	   * for mouse events and calls the appropriate method of the current
+	   * command. (From Project 1)
+	   */ 
+	  protected class CanvasPanel extends JPanel implements MouseListener,
+	      MouseMotionListener {
+	    private static final long serialVersionUID = 0;
+	    
+	    /**
+	     * Constructor just needs to set up the CanvasPanel as a listener.
+	     */
+	    public CanvasPanel() {
+	      addMouseListener(this);
+	      addMouseMotionListener(this);
+	    }
 
-	
+	    /**
+	     * Paint the whole drawing
+	     * @page the Graphics object to draw on
+	     */
+	    public void paintComponent(Graphics page) {
+	      super.paintComponent(page); // execute the paint method of JPanel
+	      dwg.draw(page); // have the drawing draw itself
+	    }
 
+	    /**
+	     * When the mouse is clicked, call the executeClick method of the
+	     * current command.
+	     */
+	    public void mouseClicked(MouseEvent event) {
+	    	cmd.addToSet(dwg, event.getPoint());
+	    	repaint();
+	    }
+
+	    // We don't care about the other mouse events.
+	    public void mouseDragged(MouseEvent event) { }
+	    public void mousePressed(MouseEvent event) { }
+	    public void mouseReleased(MouseEvent event) { }
+	    public void mouseEntered(MouseEvent event) { }
+	    public void mouseExited(MouseEvent event) { }
+	    public void mouseMoved(MouseEvent event) { }
+	  }
 }
