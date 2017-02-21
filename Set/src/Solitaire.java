@@ -42,7 +42,7 @@ public class Solitaire extends Mode {
 		optionPanel.add(hintButton);
 		optionPanel.add(add3CardsButton);
 				
-		cp.add(optionPanel, BorderLayout.CENTER);
+		cp.add(optionPanel, BorderLayout.NORTH);
 		
 		
 	}

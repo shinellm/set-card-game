@@ -43,7 +43,7 @@ public class Tutorial extends Mode {
 		optionPanel.add(backwardButton);
 		optionPanel.add(next12Button);
 				
-		cp.add(optionPanel, BorderLayout.CENTER);
+		cp.add(optionPanel, BorderLayout.NORTH);
 		
 	}
 
