@@ -3,7 +3,7 @@
  * to subclasses, Solitaire and Tutorial to
  * run specified mode.
  *  
- * @author Elizabeth
+ * @author Elizabeth Ricci
  *
  */
 
@@ -16,6 +16,7 @@ public class Mode {
 	private Drawing dwg;
 	private Container cp;
 	private Command cmd;
+	protected Canvas canvas;
 	
 	/**
 	 * Default constructor.
@@ -46,6 +47,10 @@ public class Mode {
 		
 		cp.add(optionPanel, BorderLayout.CENTER);
 		
+		// The cards will appear in a CanvasPanel.
+	    canvas = new Canvas();
+	    canvas.setBackground(Color.blue);
+		
 	}
 	
 	private class HomeButtonListener implements ActionListener {
@@ -75,6 +80,8 @@ public class Mode {
 			cmd = new RestartCmd();
 			}
 	}
+	
+	
 	
 
 }

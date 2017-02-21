@@ -1,10 +1,10 @@
 /**
  * Solitaire mode.
  * 
- * @author Elizabeth
+ * @author Elizabeth Ricci
  * @see Mode.java
  */
-import java.util.ArrayList;
+
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
