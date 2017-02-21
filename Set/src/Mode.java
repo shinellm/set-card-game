@@ -64,6 +64,8 @@ public class Mode {
 	private class RestartButtonListener implements ActionListener {
 		public void actionPerformed(ActionEvent event) {
 			cmd = new RestartCmd();
-			}
+			cmd.executeClick(dwg);
+			repaint();
+		}
 	}
 }

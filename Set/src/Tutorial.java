@@ -8,6 +8,7 @@
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
+import java.util.ArrayList;
 
 
 public class Tutorial extends Mode {
@@ -15,6 +16,7 @@ public class Tutorial extends Mode {
 	private Drawing dwg;
 	private Command cmd;
 	private int multiArrIndex;
+	private ArrayList<ArrayList<Card>> arr= new ArrayList<ArrayList<Card>>();
 	
 	/**
 	 * Constructor 

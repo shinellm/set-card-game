@@ -26,6 +26,7 @@ public class SelectThreeCardsCmd extends Command {
 	public void executeClick(Drawing dwg) {
 		int i = dwg.searchTable(p); // Find the index of the card containing p.
 		Card c = dwg.getCard(i); // Find the card at index i.
+		Deck deck = Deck.getUniqueInstance();
 
 		if (c != null) { // was there a Card containing p?
 			if (threeCards.size() < 3) {
@@ -34,10 +35,16 @@ public class SelectThreeCardsCmd extends Command {
 			}
 			else {
 				// We have three cards in our ArrayList.
-				if (dwg.isASet(threeCards) == true) {//check if the ArrayList contains a proper set.
-					dwg.removeCard(compareForIndex(threeCards[0])); //remove the cards, which make up the set, from the drawing.
-					dwg.removeCard(compareForIndex(threeCards[1]));
-					dwg.removeCard(compareForIndex(threeCards[2]));
+				if (dwg.isASet(threeCards) == true && dwg.getTableSize() == 12) {//check if the ArrayList contains a proper set.
+					for (int j = 0; j < 3; j++) {
+						Card card = deck.getPointer();
+						int k = dwg.compareForIndex(threeCards.get(i));
+						dwg.replaceCard(k, card);
+					}
+				} else if (dwg.isASet(threeCards) == true && ((dwg.getTableSize() == 15) || (dwg.getTableSize() < 12))) {
+					for (int j = 0; j < 3; j++) {
+						dwg.removeCard(dwg.compareForIndex(threeCards.get(j)));
+					}
 				}
 				// Now we clear the ArrayList and can select 3 more cards.
 				threeCards.clear();

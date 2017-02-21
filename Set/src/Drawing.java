@@ -24,12 +24,15 @@ public class Drawing {
 	 * Adds a card at the index in the array, or the location
 	 * on the "table."
 	 * 
-	 * @param: index the index in the array at which the card is to be inserted
 	 * @param: card the Card to be inserted
 	 */
-	public void addCard(int index, Card card) {
-		onTable.add(index, card);
+	public void addCard(Card card) {
+		onTable.add(num_cards, card);
 		num_cards += 1;
+	}
+	
+	public int getTableSize() {
+		return onTable.size();
 	}
 	
 	/**
