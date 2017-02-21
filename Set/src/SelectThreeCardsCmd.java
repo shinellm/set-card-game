@@ -35,13 +35,15 @@ public class SelectThreeCardsCmd extends Command {
 			}
 			else {
 				// We have three cards in our ArrayList.
-				if (dwg.isASet(threeCards) == true && dwg.getTableSize() == 12) {//check if the ArrayList contains a proper set.
+				if (dwg.isASet(threeCards) == true && dwg.getTableSize() == 12) {
+					//ArrayList contains a proper set and 12 cards on table
 					for (int j = 0; j < 3; j++) {
 						Card card = deck.getPointer();
 						int k = dwg.compareForIndex(threeCards.get(i));
 						dwg.replaceCard(k, card);
 					}
 				} else if (dwg.isASet(threeCards) == true && ((dwg.getTableSize() == 15) || (dwg.getTableSize() < 12))) {
+					//ArrayList contains a proper set and 15 cards on table
 					for (int j = 0; j < 3; j++) {
 						dwg.removeCard(dwg.compareForIndex(threeCards.get(j)));
 					}

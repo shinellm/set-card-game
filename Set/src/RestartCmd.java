@@ -21,10 +21,9 @@ public class RestartCmd extends Command {
   public void executeClick(Drawing dwg) {
 	  Deck deck = Deck.getUniqueInstance();
 	  deck.shuffle();
-	  int tableSize = dwg.getTableSize();
-	  for (int i = 0; i < tableSize; i++) {
+	  for (int i = 0; i < 12; i++) {
 		  Card card = deck.deal();
-		  dwg.replaceCardCard(i, card);
+		  dwg.replaceCard(i, card);
 	  }
   }
 }
