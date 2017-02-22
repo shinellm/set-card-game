@@ -5,12 +5,9 @@
  * 
  * Written by Rory, on February 16, 2017
  */
-import java.awt.*;
-import java.awt.event.*;
+
 import java.util.ArrayList;
 import java.util.Random;
-
-import javax.smartcardio.Card;
 
 public class Deck {
 	private ArrayList <Card> arr = new ArrayList<Card>();

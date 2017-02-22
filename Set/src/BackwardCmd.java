@@ -1,4 +1,3 @@
-import java.awt.*;
 import java.util.ArrayList;
 
 /**
@@ -33,8 +32,8 @@ public class BackwardCmd extends Command {
    */
   public void executeClick(Drawing dwg) {
 	  for (int i = 0; i < setOfThree.size(); i++) {
-		  int tracker = compareForIndex(setOfThree.get(i));
-		  dwg.getCard(tracker).highlight();
+		  int tracker = dwg.compareForIndex(setOfThree.get(i));
+		  dwg.getCard(tracker).setHighlighted();
 	  }
   }
 }

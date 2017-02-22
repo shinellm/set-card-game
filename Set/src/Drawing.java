@@ -5,9 +5,8 @@
  */
 import java.awt.*;
 import java.util.ArrayList;
-import java.lang.*;
 
-import javax.smartcardio.Card;
+
 
 public class Drawing {
 	private ArrayList<Card> onTable = new ArrayList<Card>();
@@ -42,16 +41,16 @@ public class Drawing {
 	 * card-to-be-removed is located.
 	 */
 	public void removeCard(int index) {
-		onTable.get(index).unhighlight();
+		onTable.get(index).unsetHighlighted();
 		onTable.remove(index);
-		num_shapes = num_shapes - 1;
+		num_cards = num_cards - 1;
 	}
 	
 	/**
 	 * Replaces the card at the specified index
 	 */
 	public void replaceCard(int index, Card card) {
-		onTable.get(index).unhighlight();
+		onTable.get(index).unsetHighlighted();
 		onTable.remove(index);
 		onTable.add(index, card);
 	}
@@ -76,7 +75,7 @@ public class Drawing {
 	 */
 	public int searchTable(Point p) {
 		for (int i = 0; i < num_cards; i++) {
-			if (onTable.get(i).containsPoint() == true) {
+			if (onTable.get(i).containsPoint(p) == true) {
 				return i;
 			}
 		}
@@ -100,10 +99,10 @@ public class Drawing {
 				&& (card.getShape() == onTable.get(i).getShape())
 				&& (card.getColor() == onTable.get(i).getColor())
 				&& (card.getShading() == onTable.get(i).getShading())) {
-				return true;
+				return i;
 			}
 		}
-		return false;
+		return -1;
 	}
 	
 	/**
@@ -114,7 +113,7 @@ public class Drawing {
 	 * in Solitaire mode occurred.
 	 */
 	public Card getCard(int index) {
-		return arr.get(index);
+		return onTable.get(index);
 	}
 
 	/**
@@ -148,7 +147,7 @@ public class Drawing {
 	 */
 	public boolean isASet(ArrayList<Card> list) {
 		Card card1 = list.get(0);
-		Card card2 - list.get(1);
+		Card card2 = list.get(1);
 		Card card3 = list.get(2);
 		
 		if (allOrNothing(card1.getColor(), card2.getColor(), card3.getColor())
@@ -191,14 +190,14 @@ public class Drawing {
 	 * @param: startX The playing field's upper-left corner's x-coordinate
 	 * @param: startY The playing field's upper-left corner's y-coordinate
 	 */
-	public void draw(Graphics page, int startX, int startY) {
+	public void draw(Graphics page) {
 		for (int i = 0; i < num_cards; i++) {
 			if (((i + 5) % CARDS_PER_ROW) == 2) {
-				onTable.get(i).draw(page, startX + 10, startY + 10 + (80*(i/CARDS_PER_ROW)));
+				onTable.get(i).draw(page, Mode.canvasX + 10, Mode.canvasY + 10 + (80*(i/CARDS_PER_ROW)));
 			} else if (((i + 5) % CARDS_PER_ROW) == 0) { 
-				onTable.get(i).draw(page, startX + 60, startY + 10 + (80*(i/CARDS_PER_ROW)));
+				onTable.get(i).draw(page, Mode.canvasX + 60, Mode.canvasY + 10 + (80*(i/CARDS_PER_ROW)));
 			} else {
-				onTable.get(i).draw(page, startX + 110, startY + 10 + (80*(i/CARDS_PER_ROW)));
+				onTable.get(i).draw(page, Mode.canvasX + 110, Mode.canvasY + 10 + (80*(i/CARDS_PER_ROW)));
 			}
 		}
 	}

@@ -4,41 +4,40 @@
  * attributes and all
  */
 import java.awt.*;
-import java.awt.event.*;
-import javax.swing.*;
 
-public class Card implements ActionListener{
+
+public class Card{
 	private int color;		//number code for Card's specific color: 1 = Red, 
-								//2 = Green, 3 = Blue
+	//2 = Green, 3 = Blue
 	private int shape;		//number code for Card's specific shape: 1 = Rect,
-								//2 = Ellipse, 3 = Triangle
+	//2 = Ellipse, 3 = Triangle
 	private int count;
 	private int shading;	//number code for Card's specific shade pattern: 1 = Solid,
-								//2 = Empty, 3 = Triangle
+	//2 = Empty, 3 = Triangle
 	private Shape s1; 	//The actual shape(s) to be drawn on this Card object
 	private Shape s2;
 	private Shape s3;
-	
+
 	private int x;		//The x-coordinate of a Card's upper-left corner
 	private int y;		//The y-coordinate of a Card's upper-left corner
-	
+
 	private boolean highlighted;
-	
+
 	public static final int RED = 1;
 	public static final int GREEN = 2; 
 	public static final int BLUE = 3;
-	
+
 	public static final int RECT = 1;
 	public static final int ELLIPSE = 2;
 	public static final int TRIANGLE = 3;
-	
+
 	public static final int SOLID = 1;
 	public static final int EMPTY = 2;
 	public static final int STRIPED = 3;
-	
+
 	public static final int WIDTH = 40;
 	public static final int HEIGHT = 69;
-	
+
 	private final int SHAPE_HEIGHT = 15;
 	private final int SHAPE_WIDTH = 10;
 	public Card(int cou, int col, int shad, int shap) {
@@ -51,7 +50,7 @@ public class Card implements ActionListener{
 		s3 = null;
 		highlighted = false;
 	}
-	
+
 	/**
 	 * Draws a white rectangle, given the x- and y-coordinate
 	 * parameters, and the set width and height instance variables.
@@ -69,18 +68,18 @@ public class Card implements ActionListener{
 		y = y_coor;					//Sets the y-coordinate of this Card
 		Color savedColor = page.getColor();
 		page.fillRect(x, y, WIDTH, HEIGHT);
-		
+
 		if (highlighted == true) {
 			page.setColor(Color.green);
 		} else {
 			page.setColor(Color.black);
 		}
-		
+
 		page.drawRect(x,  y, WIDTH, HEIGHT);
-		take_Color(page)
+		take_Color(page);
 		page.setColor(savedColor);
 	}
-	
+
 	/**
 	 * Helper method for drawing this Car's shape(s)
 	 * onto its surface. Sets the page's coor appropriately,
@@ -89,7 +88,7 @@ public class Card implements ActionListener{
 	 * @param: page the page on which this Card is to be drawn
 	 */
 	private void take_Color(Graphics page) {
-		
+
 		if (color == RED) {
 			page.setColor(Color.red);
 		} else if (color == GREEN) {
@@ -97,7 +96,7 @@ public class Card implements ActionListener{
 		} else {
 			page.setColor(Color.blue);
 		}
-		
+
 		take_Shapes(page);
 		if (s1 != null) {
 			s1.draw(page, shading);
@@ -109,7 +108,7 @@ public class Card implements ActionListener{
 			s3.draw(page, shading);
 		}
 	}
-	
+
 	/**
 	 * Helper method that determines which of the above Shape 
 	 * instance variables are to be instantiated, and as which 
@@ -119,85 +118,82 @@ public class Card implements ActionListener{
 	 */
 	private void take_Shapes(Graphics page) {
 		Color page_color = page.getColor();
-		
+		int count1 = 1;
+		int count2 = 2;
+		int count3 = 3;
+
 		if (shape == RECT) {
-			if (count == (1 || 3)) {
+			if (count == count1 || count == count3) {
 				s1 = new Rect(x + 15, y + 27, WIDTH, HEIGHT, page_color);
 			} 
-			if (count == (2 || 3)) {
+			if (count == count2 || count == count3) {
 				s2 = new Rect(x + 15, y + 6, WIDTH, HEIGHT, page_color);
 				s3 = new Rect(x + 15, y + 48, WIDTH, HEIGHT, page_color);
 			}
 		} else if (shape == ELLIPSE) {
-			if (count == (1 || 3)) {
+			if (count == count1 || count == count3) {
 				s1 = new Ellipse(x + 15, y + 27, WIDTH, HEIGHT, page_color);
 			} 
-			if (count == (2 || 3)){
+			if (count == count2 || count == count3){
 				s2 = new Ellipse(x + 15, y + 6, WIDTH, HEIGHT, page_color);
 				s3 = new Ellipse(x + 15, y + 48, WIDTH, HEIGHT, page_color);
 			}
 		} else {
-			int [] x1;  //x-coordinates of first triangle
-			int [] y1;	 //y-coordinates of first triangle
-			int [] x2;
-			int [] y2;
-			int [] x3;
-			int [] y3;
-			if (count == (1 || 3)) {
-				x1 = {x + 15 + (SHAPE_WIDTH/2), x + 15, x + 15 + SHAPE_WIDTH};
-				y1 = {y + 19 + SHAPE_WIDTH, y + 19 + (SHAPE_HEIGHT * 2), y + 19 + (SHAPE_HEIGHT * 2)};
+
+			if (count == count1 || count == count3) {
+				int[] x1 = {x + 15 + (SHAPE_WIDTH/2), x + 15, x + 15 + SHAPE_WIDTH};
+				int[] y1 = {y + 19 + SHAPE_WIDTH, y + 19 + (SHAPE_HEIGHT * 2), y + 19 + (SHAPE_HEIGHT * 2)};
 				s1 = new Triangle(x1, y1, 3, page_color);
-				} 
-			if (count == (2 || 3)) {
-					x2 = {x + 15 + (SHAPE_WIDTH/2), x + 15, x + 15 + SHAPE_WIDTH};
-					y2 = {y + 9, y + 9 + SHAPE_HEIGHT, y + 9 + SHAPE_HEIGHT};
-					x3 = {x + 15 + (SHAPE_WIDTH/2), x + 15, x + 15 + SHAPE_WIDTH};
-					y3 = {y + 29 + (SHAPE_WIDTH * 2), y + 29 + (SHAPE_HEIGHT * 3), y + 19 + (SHAPE_HEIGHT * 3)};
-					s2 = new Triangle(x2, y2, 3, page_color);
-					s3 = new Triangle(x3, y3, 3, page_color);
-				}
+			} 
+			if (count == count2 || count == count3) {
+				int[] x2 = {x + 15 + (SHAPE_WIDTH/2), x + 15, x + 15 + SHAPE_WIDTH};
+				int[] y2 = {y + 9, y + 9 + SHAPE_HEIGHT, y + 9 + SHAPE_HEIGHT};
+				int[] x3 = {x + 15 + (SHAPE_WIDTH/2), x + 15, x + 15 + SHAPE_WIDTH};
+				int[ ]y3 = {y + 29 + (SHAPE_WIDTH * 2), y + 29 + (SHAPE_HEIGHT * 3), y + 19 + (SHAPE_HEIGHT * 3)};
+				s2 = new Triangle(x2, y2, 3, page_color);
+				s3 = new Triangle(x3, y3, 3, page_color);
 			}
 		}
-	
-	  /**
-	   * Return true if the Rect contains Point p, false otherwise.
-	   * 
-	   * @param p point tested for containment
-	   */
-	  public boolean containsPoint(Point p) {
-		  return (p.x >= x && p.x <= (x + WIDTH)
-				  && p.y >= y && p.y <= (y + HEIGHT));
-	  }
-	
+	}
+
+	/**
+	 * Return true if the Rect contains Point p, false otherwise.
+	 * 
+	 * @param p point tested for containment
+	 */
+	public boolean containsPoint(Point p) {
+		return (p.x >= x && p.x <= (x + WIDTH)
+				&& p.y >= y && p.y <= (y + HEIGHT));
+	}
+
 	public int getColor() {
 		return color;
 	}
-	
+
 	public int getShape() {
 		return shape;
 	}
-	
+
 	public int getCount() {
 		return count;
 	}
-	
+
 	public int getShading() {
 		return shading;
 	}
-	
+
 	public int getX() {
 		return x;
 	}
-	
-	public getY() {
+
+	public int getY() {
 		return y;
 	}
-	
-	public void highlight() {
+
+	public void setHighlighted() {
 		highlighted = true;
 	}
-	
-	public void unhighlight() {
+	public void unsetHighlighted() {
 		highlighted = false;
 	}
-	}
+}

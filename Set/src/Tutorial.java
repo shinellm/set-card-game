@@ -8,17 +8,15 @@
 import java.awt.*;
 import java.awt.event.*;
 
-import javax.smartcardio.Card;
+
 import javax.swing.*;
 
 import java.util.ArrayList;
 
 
 public class Tutorial extends Mode {
-
-	private Drawing dwg;
+	private static final long serialVersionUID = 1L;private Drawing dwg;
 	private Command cmd;
-	private Container cp;
 	private int multiArrIndex;
 	private ArrayList<ArrayList<Card>> allSets= new ArrayList<ArrayList<Card>>();
 	
@@ -27,11 +25,9 @@ public class Tutorial extends Mode {
 	 * @param cp the container object
 	 * @param dwg the drawing object 
 	 */
-	public Tutorial(Drawing d, Container c){
+	public Tutorial(Drawing dwg, Container cp){
 		super(dwg, cp);
 		cmd = new Command();
-		dwg = d;
-		cp = c;
 		multiArrIndex = 0;
 		
 		//Make JButton objects for the two modes of play
@@ -56,21 +52,21 @@ public class Tutorial extends Mode {
 		optionPanel.add(backwardButton);
 		optionPanel.add(next12Button);
 				
-		cp.add(optionPanel, BorderLayout.NORTH);
+		cp.add(optionPanel, BorderLayout.WEST);
+		cp.repaint();
+		cp.validate();
 	}
 
-	
-	
 	private class ForwardButtonListener implements ActionListener {
 		public void actionPerformed(ActionEvent event) {
 			JButton button0 = (JButton)event.getSource();
-			JPanel panel = (JPanel)button.getParent();
+			JPanel panel = (JPanel)button0.getParent();
 			Component [] components = panel.getComponents();
 			JButton button1 = (JButton)components[1];
 			
 			if ((multiArrIndex - 1) >= 0) {
 				for (int i = 0; i < 3; i++) {
-					allSets.get(multiArrIndex - 1).get(i).unhighlight();
+					allSets.get(multiArrIndex - 1).get(i).unsetHighlighted();
 				}
 			}
 			
@@ -89,13 +85,13 @@ public class Tutorial extends Mode {
 	private class BackwardButtonListener implements ActionListener {
 		public void actionPerformed(ActionEvent event) {
 			JButton button0 = (JButton)event.getSource();
-			JPanel panel = (JPanel)button.getParent();
+			JPanel panel = (JPanel)button0.getParent();
 			Component [] components = panel.getComponents();
-			Jbutton button1 = (JButton)components[0];
+			JButton button1 = (JButton)components[0];
 			
 			if ((multiArrIndex + 1) <= (allSets.size() - 1)) {
 				for (int i = 0; i < 3; i++) {
-					allSets.get(multiArrIndex + 1).get(i).unhighlight();
+					allSets.get(multiArrIndex + 1).get(i).unsetHighlighted();
 				}
 			}
 			

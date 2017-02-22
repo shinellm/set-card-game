@@ -1,6 +1,3 @@
-import java.awt.*;
-import java.util.ArrayList;
-
 /**
  * AddThreeCmd.java
  * Command class to perform an add three cards command.
@@ -18,7 +15,6 @@ public class AddThreeCmd extends Command {
 	 * @param dwg the drawing 
 	 */
 	public void executeClick(Drawing dwg) {
-		ArrayList<Card> table = dwg.getTable();
 		Deck deck = Deck.getUniqueInstance();
 		if (dwg.getTableSize() < 15) {
 			//take 3 cards from the deck and add it to the cards on the table.

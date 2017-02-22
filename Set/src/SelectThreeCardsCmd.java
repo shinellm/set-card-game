@@ -1,8 +1,6 @@
 import java.awt.*;
 import java.util.ArrayList;
 
-import javax.smartcardio.Card;
-
 /**
  * SelectThreeCardsCmd.java
  * Command class to highlight cards, store their index as they're selected, and
@@ -35,7 +33,7 @@ public class SelectThreeCardsCmd extends Command {
 		if (c != null) { // was there a Card containing p?
 			if (threeCards.size() < 3) {
 				threeCards.add(c); // save this card for when there's another click
-				dwg.highlight(c); // highlights the card that has been selected.
+				c.setHighlighted(); // highlights the card that has been selected.
 			}
 			else {
 				// We have three cards in our ArrayList.

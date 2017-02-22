@@ -16,8 +16,8 @@ public class Triangle extends Shape {
 	//Sets the triangle three Points via the int arrays
 	  public Triangle(int[] x, int[] y, int np, Color color) {
 		    super(color);
-		    x_coords = copyOf(x, 3);
-		    y_coords = copyOf(y, 3);
+		    x_coords = Arrays.copyOf(x, 3);
+		    y_coords = Arrays.copyOf(y, 3);
 		    num_points = np;
 		  }
 	  
@@ -30,9 +30,9 @@ public class Triangle extends Shape {
 	   * kind of shading of this Shape
 	   */
 	  public void drawShape(Graphics page, int shading) {
-		  if (shading == (Card.SOLID || Card.STRIPED)) {
+		  if (shading == Card.SOLID || shading == Card.STRIPED) {
 			page.fillPolygon(x_coords, y_coords, num_points);
-		  } else (shading == Card.EMPTY) {
+		  } else if (shading == Card.EMPTY) {
 			  page.drawPolygon(x_coords, y_coords, num_points);
 		  }
 		  
@@ -42,7 +42,7 @@ public class Triangle extends Shape {
 			  int minx = Math.min(minx1,  x_coords[2]);
 			  int miny = Math.min(y_coords[0], y_coords[1]);
 			  int height = Math.max(y_coords[0],  y_coords[1]) - miny;
-			  int i = 0			//To calculate ever-decreasing x-coordinate
+			  int i = 0;		//To calculate ever-decreasing x-coordinate
 			  int j = miny;		//To calculate ever-increasing y-coordinate
 			  while (j < height) {
 				  page.drawLine(minx + i, j, ((i * -1) * 2) + minx, j);

@@ -12,7 +12,7 @@ import java.awt.*;
 public abstract class Shape {
   private Color color; // Shape's color
 
-  public abstract void drawShape(Graphics page); // draw the Shape
+  public abstract void drawShape(Graphics page, int shade); // draw the Shape
  // public abstract boolean containsPoint(Point p); // does the Shape contain Point p?
   //public abstract void move(int deltaX, int deltaY); // move the Shape
   //public abstract Point getCenter(); // return the Shape's center
@@ -46,15 +46,5 @@ public abstract class Shape {
 	page.setColor(color);
 	drawShape(page, shading);
 	page.setColor(savedColor);
-  }
-
-  /**
-   * Move the Shape to be a given center.
-   * 
-   * @param newCenter the new center of the shape
-   */
-  public void setCenter(Point newCenter) {
-    Point oldCenter = getCenter();
-    move(newCenter.x - oldCenter.x, newCenter.y - oldCenter.y);
   }
 }

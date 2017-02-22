@@ -19,15 +19,14 @@ public class Rect extends Shape{
 	   * @param shading the style in which the Shape is to be drawn
 	   */
 	  public void drawShape(Graphics page, int shading) {
-		  if (shading == (Card.SOLID || Card.STRIPED)) {
+		  if (shading == Card.SOLID || shading == Card.STRIPED) {
 			page.fillRect(x, y, width, height);
-		  } else (shading == Card.EMPTY) {
+		  } else if (shading == Card.EMPTY) {
 			  page.drawRect(x,  y,  width,  height);
 		  }
 		  
 		  if (shading == Card.STRIPED) {
 			  page.setColor(Color.white);
-			  int i = x;
 			  int j = y;
 			  while (j < y + height) {
 				  page.drawLine(x, j, x + width, j);

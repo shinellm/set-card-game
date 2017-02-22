@@ -13,7 +13,7 @@ public class DeckFactory {
 			return null;
 		} 
 		
-		if (shapeType.equals("Set Deck")) {
+		if (deckType.equals("Set Deck")) {
 			return Deck.getUniqueInstance();
 		}
 	}

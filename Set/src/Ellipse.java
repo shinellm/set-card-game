@@ -55,18 +55,17 @@ public class Ellipse extends Shape {
    * kind of shading of this Shape
    */
   public void drawShape(Graphics page, int shading) {
-	  if (shading == (Card.SOLID || Card.STRIPED)) {
-		page.fillRect(x, y, width, height);
-	  } else (shading == Card.EMPTY) {
-		  page.drawRect(x,  y,  width,  height);
+	  if (shading == Card.SOLID || shading == Card.STRIPED) {
+		page.fillRect(left, top, width, height);
+	  } else if (shading == Card.EMPTY) {
+		  page.drawRect(left,  top,  width,  height);
 	  }
 	  
 	  if (shading == Card.STRIPED) {
 		  page.setColor(Color.white);
-		  int i = x;
-		  int j = y;
-		  while (j < y + height) {
-			  page.drawLine(x, j, x + width, j);
+		  int j = top;
+		  while (j < top + height) {
+			  page.drawLine(left, j, left + width, j);
 			  j += 3;
 		  }
 	  }

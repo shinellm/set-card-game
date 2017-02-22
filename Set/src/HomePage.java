@@ -7,14 +7,13 @@
  */
 import java.awt.*;
 import java.awt.event.*;
-import java.util.ArrayList;
 
 import javax.swing.*;
 
 public class HomePage extends JApplet {
 	private static final long serialVersionUID = 1L;
 	
-	private final int APPLET_WIDTH = 700, APPLET_HEIGHT = 500;
+	private final int APPLET_WIDTH = 700, APPLET_HEIGHT = 1000;
 	private Drawing dwg;
 	private Mode mode;
 	
@@ -24,7 +23,6 @@ public class HomePage extends JApplet {
 	 */
 	public void init() {
 		dwg = new Drawing();
-		mode = new Mode();
 		
 		//Make JButton objects for the two modes of play
 		JButton tutorialButton = new JButton("Tutorial");
@@ -36,7 +34,9 @@ public class HomePage extends JApplet {
 		
 		//The two buttons will be adjacent to one another, in one row of two
 		JPanel modePanel = new JPanel(); //Holds the buttons horizontally
+		JLabel setLabel = new JLabel("Choose Mode:");
 		modePanel.setLayout(new FlowLayout());
+		modePanel.add(setLabel);
 		tutorialButton.setBackground(Color.green);
 		solitaireButton.setBackground(Color.green);
 		modePanel.add(tutorialButton);
@@ -47,7 +47,7 @@ public class HomePage extends JApplet {
 		Container cp = getContentPane();
 		cp.setLayout(new BorderLayout());
 		cp.add(modePanel, BorderLayout.CENTER);
-		
+		mode = null;
 		setSize(APPLET_WIDTH, APPLET_HEIGHT);
 	}
 	
@@ -61,6 +61,7 @@ public class HomePage extends JApplet {
 			panel.validate();
 			Container cp = (Container)panel.getParent();
 			cp.remove(0);
+			cp.repaint();
 			mode = new Tutorial(dwg, cp);
 		}
 	}
@@ -75,6 +76,7 @@ public class HomePage extends JApplet {
 			panel.validate();
 			Container cp = (Container)panel.getParent();
 			cp.remove(0);
+			cp.repaint();
 			mode = new Solitaire(dwg, cp);
 		}
 	}
