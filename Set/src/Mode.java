@@ -104,16 +104,9 @@ public class Mode extends JApplet{
 	     * current command.
 	     */
 	    public void mouseClicked(MouseEvent event) {
-	    	if (cardsClicked == 0) {
 	    		cmd = new SelectThreeCardsCmd();
-	    	}
 	    		cmd.addToSet(getDrawing(), event.getPoint());
 	    		repaint();
-	    		cardsClicked += 1;
-	    	if (cardsClicked == 3) {
-	    		cardsClicked = 0;
-	    	}
-	    	repaint();
 	    }
 
 	    // We don't care about the other mouse events.

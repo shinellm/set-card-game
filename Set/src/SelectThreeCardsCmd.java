@@ -23,7 +23,7 @@ public class SelectThreeCardsCmd extends Command {
 	 * @param p the coordinates of the click
 	 * @param dwg the drawing 
 	 */
-	public void executeClick(Drawing dwg) {	  }
+	public void executeClick(Drawing dwg) {	}
 	
 	public void addToSet(Drawing dwg, Point p) {
 		int i = dwg.searchTable(p); // Find the index of the card containing p.
