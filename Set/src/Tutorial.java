@@ -18,6 +18,7 @@ public class Tutorial extends Mode {
 
 	private Drawing dwg;
 	private Command cmd;
+	private Container cp;
 	private int multiArrIndex;
 	private ArrayList<ArrayList<Card>> allSets= new ArrayList<ArrayList<Card>>();
 	
@@ -26,9 +27,11 @@ public class Tutorial extends Mode {
 	 * @param cp the container object
 	 * @param dwg the drawing object 
 	 */
-	public Tutorial(Drawing dwg, Container cp){
+	public Tutorial(Drawing d, Container c){
 		super(dwg, cp);
 		cmd = new Command();
+		dwg = d;
+		cp = c;
 		multiArrIndex = 0;
 		
 		//Make JButton objects for the two modes of play

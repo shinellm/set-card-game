@@ -23,7 +23,9 @@ public class SelectThreeCardsCmd extends Command {
 	 * @param p the coordinates of the click
 	 * @param dwg the drawing 
 	 */
-	public void executeClick(Drawing dwg) {
+	public void executeClick(Drawing dwg) {	  }
+	
+	public void addToSet(Drawing dwg, Point p) {
 		int i = dwg.searchTable(p); // Find the index of the card containing p.
 		Card c = dwg.getCard(i); // Find the card at index i.
 		Deck deck = Deck.getUniqueInstance();
@@ -49,6 +51,6 @@ public class SelectThreeCardsCmd extends Command {
 				// Now we clear the ArrayList and can select 3 more cards.
 				threeCards.clear();
 			}
-		}	  
+		}
 	}
 }

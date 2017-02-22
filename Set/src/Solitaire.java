@@ -16,6 +16,8 @@ public class Solitaire extends Mode {
 
 	private Drawing dwg;
 	private Command cmd;
+	private Container cp;
+	private int cardsClicked = 0;
 	
 	
 	/**
@@ -23,9 +25,11 @@ public class Solitaire extends Mode {
 	 * @param cp the container object 
 	 * @param dwg	the drawing object
 	 */
-	public Solitaire(Drawing dwg, Container cp) {
+	public Solitaire(Drawing d, Container c) {
 		super(dwg, cp);
-		cmd = new Command()
+		cmd = new Command();
+		dwg = d;
+		cp = c;
 		CanvasPanel canvasPanel = new CanvasPanel();
 		canvasPanel.setBackground(Color.white);
 		
@@ -63,23 +67,8 @@ public class Solitaire extends Mode {
 			cmd = new AddThreeCmd();
 			cmd.executeClick(dwg);
 			repaint();
-			}
+			} 
 	}
-	
-	/**
-	 * Adds three cards to play upon request
-	 */
-	public void addThreeCards(){
-		
-	}
-	
-	/**
-	 * Replace cards when 3 are removed
-	 */
-	public void replaceThreeCards(){
-		
-	}
-	
 	
 	private int getCardsClicked(){
 		return 0;
@@ -116,8 +105,15 @@ public class Solitaire extends Mode {
 	     * current command.
 	     */
 	    public void mouseClicked(MouseEvent event) {
-	    	cmd.addToSet(dwg, event.getPoint());
-	    	repaint();
+	    	if (cardsClicked == 0) {
+	    		cmd = new SelectThreeCardsCmd();
+	    	}
+	    		cmd.addToSet(dwg, event.getPoint());
+	    		repaint();
+	    		cardsClicked += 1;
+	    	if (cardsClicked == 3) {
+	    		cardsClicked = 0;
+	    	}
 	    }
 
 	    // We don't care about the other mouse events.
