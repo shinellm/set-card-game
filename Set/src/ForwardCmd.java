@@ -14,7 +14,12 @@ import javax.smartcardio.Card;
 
 public class ForwardCmd extends Command {
   private ArrayList<Card> setOfThree = new ArrayList<Card>(); // The three cards, which make a set
-  
+ 
+  /**
+   * Creates a private arrayList of three cards, which make a set.
+   * 
+   * @param arr an ArrayList of cards, which make a set 
+   */
   public ForwardCmd (ArrayList<Card> arr) {
 	  for (int i = 0; i < 3; i++) {
 		  setOfThree.add(i, arr.get(i));
