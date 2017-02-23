@@ -45,6 +45,9 @@ public class Mode extends JApplet{
 		cp.add(canvasPanel, BorderLayout.CENTER);
 		cp.repaint();
 		cp.validate();
+		
+		Command cmd = new NewTwelveCardsCmd();
+		cmd.executeClick(dwg);
 	}
 	
 	public Drawing getDrawing() {
