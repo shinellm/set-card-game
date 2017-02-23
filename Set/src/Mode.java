@@ -64,15 +64,9 @@ public class Mode extends JApplet{
 	
 	private class HomeButtonListener implements ActionListener {
 		public void actionPerformed(ActionEvent event) {
-			JButton button = (JButton)event.getSource();
-			JPanel panel = (JPanel)button.getParent();
-			panel.remove(0);
-			panel.remove(0);
-			panel.repaint();
-			panel.validate();
-			Container cp = (Container)panel.getParent();
-			cp.remove(0);
 			cmd = new QuitCmd();
+			cmd.executeClick(dwg);
+			repaint();
 		}
 	}
 		
@@ -116,7 +110,7 @@ public class Mode extends JApplet{
 	     */
 	    public void mouseClicked(MouseEvent event) {
 	    		Point p = event.getPoint();
-			selectCmd.addToSet(dwg, p);
+	    		selectCmd.addToSet(dwg, p);
 	    		repaint();
 	    }
 
