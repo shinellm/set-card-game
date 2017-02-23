@@ -9,7 +9,7 @@ import java.util.ArrayList;
  */
 
 public class HintCmd extends Command {
-	private ArrayList<Card> table; //The current cards at play
+	private ArrayList<ArrayList<Card>> sets; //The current cards at play
 	
 	/**
 	 * When the "Hint" button is clicked, check the cards at play
@@ -20,10 +20,10 @@ public class HintCmd extends Command {
 	 * @param dwg the drawing 
 	 */
 	public void executeClick(Drawing dwg) {
-		table = dwg.getTable();
-		ArrayList<Card> set = table.getOneSet(); //Use the array received only highlight one index
-		for (int i = 0; i < 3; i++) {
-			set.get(i).setHighlighted();
+		sets = dwg.getAllSets();
+		ArrayList<Card> setToHighlight = sets.get(0);
+		for (int i = 0; i < 3; i++) { //Use the multi-dimensional ArrayList received to highlight only one index
+			setToHighlight.get(i).setHighlighted();
 		} 
 	}
 }
