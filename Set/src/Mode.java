@@ -57,7 +57,7 @@ public class Mode extends JApplet{
 		//Add 12 cards
 		for (int i = 0; i < 12; i++) {
 			  Card card = deck.deal();
-			  dwg.addCard(card);
+			  dwg.addCard(i, card);
 		}
 	}
 	
