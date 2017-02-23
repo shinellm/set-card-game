@@ -147,9 +147,9 @@ public class Card{
 			} 
 			if (count == count2 || count == count3) {
 				int[] x2 = {x + 15 + (SHAPE_WIDTH/2), x + 15, x + 15 + SHAPE_WIDTH};
-				int[] y2 = {y + 9, y + 9 + SHAPE_HEIGHT, y + 9 + SHAPE_HEIGHT};
+				int[] y2 = {y + 5, y + 5 + SHAPE_HEIGHT, y + 5 + SHAPE_HEIGHT};
 				int[] x3 = {x + 15 + (SHAPE_WIDTH/2), x + 15, x + 15 + SHAPE_WIDTH};
-				int[ ]y3 = {y + 29 + (SHAPE_WIDTH * 2), y + 29 + (SHAPE_HEIGHT * 3), y + 19 + (SHAPE_HEIGHT * 3)};
+				int[ ]y3 = {y + 25 + (SHAPE_WIDTH * 2), y + 15 + (SHAPE_HEIGHT * 3), y + 15 + (SHAPE_HEIGHT * 3)};
 				s2 = new Triangle(x2, y2, 3, page_color);
 				s3 = new Triangle(x3, y3, 3, page_color);
 			}

@@ -11,7 +11,7 @@ import java.util.ArrayList;
  */
 
 public class SelectThreeCardsCmd extends Command {
-	private ArrayList<Card> threeCards; // the index of the three cards selected in Solitaire
+	private ArrayList<Card> threeCards = new ArrayList<Card>(); // the index of the three cards selected in Solitaire
 	
 	/**
 	 * When a card is selected in Solitaire mode, the card's index is store in the
