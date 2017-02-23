@@ -215,7 +215,7 @@ public class Drawing {
 	 * Gets the current value of highlight
 	*/
 	public int getHighlight() {
-		return highlight();
+		return highlight;
 	}
 
 	public void incrementHighlight() {
@@ -223,7 +223,7 @@ public class Drawing {
 	}
 
 	public void decrementHighlight() {
-		highlight = highlight - 1;
+		highlight -= 1;
 	}
 
 	/**

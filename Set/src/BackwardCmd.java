@@ -21,9 +21,12 @@ public class BackwardCmd extends Command {
 	 */
 	public void executeClick(Drawing dwg) {
 		sets = dwg.getAllSets();
-		ArrayList<Card> setToHighlight = sets.get(0);
-		for (int i = 0; i < 3; i++) { //Use the multi-dimensional ArrayList received to highlight only one index
-			setToHighlight.get(i).setHighlighted();
+		if (dwg.getHighlight() != 0) {
+			dwg.decrementHighlight(); //Decrements the index I took the cards out of and keeps track of the new index
+			ArrayList<Card> setToHighlight = sets.get(dwg.getHighlight());
+			for (int i = 0; i < 3; i++) { //Use the multi-dimensional ArrayList received to highlight only one index
+				setToHighlight.get(i).setHighlighted();
+			}
 		}
-	}//Need a way to keep track of the index I took the cards out of
+	}
 }

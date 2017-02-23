@@ -33,8 +33,8 @@ public class Tutorial extends Mode {
 		c = cp;
 		
 		//Make JButton objects for the two modes of play
-		JButton forwardButton = new JButton("Previous Set");
-		JButton backwardButton = new JButton("Next Set");
+		JButton forwardButton = new JButton("Next Set");
+		JButton backwardButton = new JButton("Previous Set");
 		JButton next12Button = new JButton("Next 12 Cards");
 		
 				
