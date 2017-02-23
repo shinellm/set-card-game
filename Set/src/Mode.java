@@ -26,7 +26,7 @@ public class Mode extends JApplet{
 		selectCmd = new SelectThreeCardsCmd();
 		
 		CanvasPanel canvasPanel = new CanvasPanel();
-		canvasPanel.setBackground(Color.white);
+		canvasPanel.setBackground(Color.cyan);
 		
 		//Make JButton objects for the two modes of play
 		JButton homeButton = new JButton("Home");
