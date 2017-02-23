@@ -9,6 +9,7 @@ public class Mode extends JApplet{
 	private Command cmd;
 	private SelectThreeCardsCmd selectCmd;
 	private Deck deck;
+	private boolean toSelectOrNot;
 	
 	public static final int canvasX = 50;		//The x-coordinate for the canvas panel, on which the cards are draw
 	public static final int canvasY = 50;		//The y-coordinate for the canvas panel, on which the cards are draw
@@ -24,6 +25,7 @@ public class Mode extends JApplet{
 		cp = c;
 		cmd = new Command();
 		selectCmd = new SelectThreeCardsCmd();
+		toSelectOrNot = false;
 		
 		CanvasPanel canvasPanel = new CanvasPanel();
 		canvasPanel.setBackground(Color.cyan);
@@ -60,6 +62,17 @@ public class Mode extends JApplet{
 			  Card card = deck.deal();
 			  dwg.addCard(i, card);
 		}
+	}
+
+	/**
+	 * Sets the instance variable toSelectOrNot to true
+	 * or false based on the parameter, thus enabling
+	 * or disabling the ability to select a set on the canvas.
+	 * 
+	 * @param: set the boolean to which toSelectOrNot will be set
+	*/
+	public void setSelectThreeCards(boolean set) {
+		toSelectOrNot = set;
 	}
 	
 	private class HomeButtonListener implements ActionListener {
@@ -109,9 +122,11 @@ public class Mode extends JApplet{
 	     * current command.
 	     */
 	    public void mouseClicked(MouseEvent event) {
+		if (toSelectOrNot == true) {
 	    		Point p = event.getPoint();
 	    		selectCmd.addToSet(dwg, p);
 	    		repaint();
+		}
 	    }
 
 	    // We don't care about the other mouse events.

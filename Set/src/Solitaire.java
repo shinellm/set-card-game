@@ -17,6 +17,7 @@ public class Solitaire extends Mode {
 	 */
 	public Solitaire(Drawing dwg, Container cp) {
 		super(dwg, cp);
+		setSelectThreeCards(true);
 		cmd = new Command();
 		d = dwg;
 		c = cp;

@@ -28,6 +28,7 @@ public class Tutorial extends Mode {
 	 */
 	public Tutorial(Drawing dwg, Container cp){
 		super(dwg, cp);
+		setSelectThreeCards(false);
 		cmd = new Command();
 		d = dwg;
 		c = cp;
