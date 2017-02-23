@@ -49,7 +49,7 @@ public class Tutorial extends Mode {
 		optionPanel.add(backwardButton);
 		optionPanel.add(next12Button);
 				
-		cp.add(optionPanel, BorderLayout.WEST);
+		cp.add(optionPanel, BorderLayout.PAGE_END);
 		cp.repaint();
 		cp.validate();
 	}
