@@ -15,7 +15,7 @@ import java.util.ArrayList;
 
 
 public class Tutorial extends Mode {
-	private static final long serialVersionUID = 1L;private Drawing dwg;
+	private static final long serialVersionUID = 1L;
 	private Command cmd;
 	private Drawing d;
 	private Container c;

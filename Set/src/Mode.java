@@ -7,6 +7,7 @@ public class Mode extends JApplet{
 	private Drawing dwg;
 	private Container cp;
 	private Command cmd;
+	private SelectThreeCardsCmd selectCmd;
 	private Deck deck;
 	
 	public static final int canvasX = 50;		//The x-coordinate for the canvas panel, on which the cards are draw
@@ -22,6 +23,7 @@ public class Mode extends JApplet{
 		dwg = d;
 		cp = c;
 		cmd = new Command();
+		selectCmd = new SelectThreeCardsCmd();
 		
 		CanvasPanel canvasPanel = new CanvasPanel();
 		canvasPanel.setBackground(Color.white);
@@ -57,10 +59,6 @@ public class Mode extends JApplet{
 			  Card card = deck.deal();
 			  dwg.addCard(card);
 		}
-	}
-	
-	public Drawing getDrawing() {
-		return dwg;
 	}
 	
 	private class HomeButtonListener implements ActionListener {
@@ -108,7 +106,7 @@ public class Mode extends JApplet{
 	     */
 	    public void paintComponent(Graphics page) {
 	      super.paintComponent(page); // execute the paint method of JPanel
-	      getDrawing().draw(page); // have the drawing draw itself
+	      dwg.draw(page); // have the drawing draw itself
 	    }
 
 	    /**
@@ -116,7 +114,8 @@ public class Mode extends JApplet{
 	     * current command.
 	     */
 	    public void mouseClicked(MouseEvent event) {
-	    		
+	    		Point p = event.getPoint();
+			selectCmd.addToSet(dwg, p);
 	    		repaint();
 	    }
 

@@ -9,7 +9,6 @@ public class Solitaire extends Mode {
 	private Command cmd;
 	private Drawing d;
 	private Container c;
-	private Deck deck;
 	
 	/**
 	 * Constructor 
