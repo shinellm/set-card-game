@@ -64,20 +64,19 @@ public class Tutorial extends Mode {
 
 	private class ForwardButtonListener implements ActionListener {
 		public void actionPerformed(ActionEvent event) {
-			JButton button0 = (JButton)event.getSource();
-			JPanel panel = (JPanel)button0.getParent();
-			Component [] components = panel.getComponents();
-			JButton button1 = (JButton)components[1];
+			cmd = new ForwardCmd();
+			cmd.executeClick(d);
+			c.repaint();
 			
 		}
 	}
 	
 	private class BackwardButtonListener implements ActionListener {
 		public void actionPerformed(ActionEvent event) {
-			JButton button0 = (JButton)event.getSource();
-			JPanel panel = (JPanel)button0.getParent();
-			Component [] components = panel.getComponents();
-			JButton button1 = (JButton)components[0];
+			cmd = new BackwardCmd();
+			cmd.executeClick(d);
+			c.repaint();
+			
 			
 		}
 	}
