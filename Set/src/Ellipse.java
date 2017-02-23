@@ -56,9 +56,9 @@ public class Ellipse extends Shape {
    */
   public void drawShape(Graphics page, int shading) {
 	  if (shading == Card.SOLID || shading == Card.STRIPED) {
-		page.fillRect(left, top, width, height);
+		page.fillOval(left, top, width, height);
 	  } else if (shading == Card.EMPTY) {
-		  page.drawRect(left,  top,  width,  height);
+		  page.drawOval(left,  top,  width,  height);
 	  }
 	  
 	  if (shading == Card.STRIPED) {
