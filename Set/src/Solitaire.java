@@ -37,6 +37,7 @@ public class Solitaire extends Mode {
 		optionPanel.add(hintButton);
 		optionPanel.add(Box.createRigidArea(new Dimension(0,5)));
 		optionPanel.add(add3CardsButton);
+		optionPanel.setBackground(Color.white);
 		
 		c.add(optionPanel, BorderLayout.EAST);
 		c.repaint();

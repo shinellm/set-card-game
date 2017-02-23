@@ -55,6 +55,7 @@ public class Tutorial extends Mode {
 		optionPanel.add(backwardButton);
 		optionPanel.add(Box.createRigidArea(new Dimension(0,5)));
 		optionPanel.add(next12Button);
+		optionPanel.setBackground(Color.white);
 		
 				
 		c.add(optionPanel, BorderLayout.EAST);

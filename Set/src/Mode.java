@@ -43,6 +43,7 @@ public class Mode extends JApplet{
 		restartButton.setBackground(Color.CYAN);
 		optionPanel.add(homeButton);
 		optionPanel.add(restartButton);
+		optionPanel.setBackground(Color.white);
 		
 		cp.add(optionPanel, BorderLayout.NORTH);
 		cp.add(canvasPanel, BorderLayout.CENTER);
