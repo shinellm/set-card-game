@@ -164,11 +164,27 @@ public class Drawing {
 	* Returns the ArrayList of all possible sets 
 	* out of the existing cards on the table
 	*
-	* @return: the ArrayList of each ArrayList that
+	* @return: allSets the ArrayList of each ArrayList that
 	* represents each set on the table.
 	*/
 	public ArrayList<ArrayList<Card>> getAllSets() {
-
+		ArrayList<ArrayList<Card>> allSets = new ArrayList<ArrayList<Card>>();
+		int arr_index = 0;
+		for (int i = 0; i < num_cards - 2; i++) {
+			for (int j = i + 1; j < num_cards; j++) {
+				for (int k = j + 1; k < num_cards; k++) {
+					ArrayList<Card> singleSet = new ArrayList<Card>();
+					singleSet.add(0, onTable.get(i));
+					singleSet.add(1, onTable.get(j));
+					singleSet.add(2, onTable.get(k));
+					if (isASet(singleSet) == true) {
+						allSets.add(arr_index, singleSet);
+						arr_index += 1;
+					}
+				}
+			}
+		}
+		return allSets;
 	}
 	
 	/**

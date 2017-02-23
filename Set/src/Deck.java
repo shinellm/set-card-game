@@ -106,6 +106,13 @@ public class Deck {
 		Card pointer = arr.get(currCardPointer);
 		return pointer;
 	}
+
+	/**
+	 * Returns the value of currCardPointer
+	 */
+	public int getPointerIndex() {
+		return currCardPointer;
+	}
 	
 	/**
 	 * Determines whether the deck is empty or not
