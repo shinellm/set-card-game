@@ -41,15 +41,19 @@ public class Tutorial extends Mode {
 				
 		//The two buttons will be adjacent to one another, in one row of two
 		JPanel optionPanel = new JPanel(); //Holds the buttons horizontally
-		optionPanel.setLayout(new FlowLayout());
-		forwardButton.setBackground(Color.green);
-		backwardButton.setBackground(Color.green);
-		next12Button.setBackground(Color.green);
+		optionPanel.setLayout(new BoxLayout(optionPanel, BoxLayout.PAGE_AXIS));
+		forwardButton.setBackground(Color.cyan);
+		backwardButton.setBackground(Color.cyan);
+		next12Button.setBackground(Color.cyan);
+		optionPanel.add(Box.createRigidArea(new Dimension(0,10)));
 		optionPanel.add(forwardButton);
+		optionPanel.add(Box.createRigidArea(new Dimension(0,5)));
 		optionPanel.add(backwardButton);
+		optionPanel.add(Box.createRigidArea(new Dimension(0,5)));
 		optionPanel.add(next12Button);
+		
 				
-		cp.add(optionPanel, BorderLayout.PAGE_END);
+		cp.add(optionPanel, BorderLayout.EAST);
 		cp.repaint();
 		cp.validate();
 	}

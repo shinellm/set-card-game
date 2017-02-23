@@ -31,13 +31,14 @@ public class Solitaire extends Mode {
 				
 		//The two buttons will be adjacent to one another, in one row of two
 		JPanel optionPanel = new JPanel(); //Holds the buttons horizontally
-		optionPanel.setLayout(new FlowLayout());
-		hintButton.setBackground(Color.green);
-		add3CardsButton.setBackground(Color.green);
+		optionPanel.setLayout(new BoxLayout(optionPanel, BoxLayout.PAGE_AXIS));
+		hintButton.setBackground(Color.cyan);
+		add3CardsButton.setBackground(Color.cyan);
 		optionPanel.add(hintButton);
+		optionPanel.add(Box.createRigidArea(new Dimension(0,5)));
 		optionPanel.add(add3CardsButton);
 		
-		cp.add(optionPanel, BorderLayout.WEST);
+		cp.add(optionPanel, BorderLayout.EAST);
 		cp.repaint();
 		cp.validate();
 		

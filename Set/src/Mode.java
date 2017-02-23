@@ -37,8 +37,8 @@ public class Mode extends JApplet{
 		//The two buttons will be adjacent to one another, in one row of two
 		JPanel optionPanel = new JPanel(); //Holds the buttons horizontally
 		optionPanel.setLayout(new FlowLayout());
-		homeButton.setBackground(Color.green);
-		restartButton.setBackground(Color.green);
+		homeButton.setBackground(Color.CYAN);
+		restartButton.setBackground(Color.CYAN);
 		optionPanel.add(homeButton);
 		optionPanel.add(restartButton);
 		
