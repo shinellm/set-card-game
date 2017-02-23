@@ -17,9 +17,16 @@ public class NewTwelveCardsCmd extends Command {
    */
   public void executeClick(Drawing dwg) {
 	  Deck deck = Deck.getUniqueInstance();
-	  for (int i = 0; i < 12; i++) {
-		  Card card = deck.deal();
-		  dwg.replaceCard(i, card);
+	  if (deck.getPointerIndex() == 0) {
+		  for (int i = 0; i < 12; i++) {
+			  Card card = deck.deal();
+			  dwg.addCard(i, card); 
+		  }
+	  } else {
+		  for (int i = 0; i < 12; i++) {
+	  		  Card card = deck.deal();
+	  		  dwg.replaceCard(i, card);
+	  	  }
 	  }
   }
 }

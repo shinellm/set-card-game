@@ -24,9 +24,10 @@ public class Drawing {
 	 * on the "table."
 	 * 
 	 * @param: card the Card to be inserted
+	 * @param: index the index at which the Card is to be inserted
 	 */
-	public void addCard(Card card) {
-		onTable.add(num_cards, card);
+	public void addCard(int index, Card card) {
+		onTable.add(int index, num_cards, card);
 		num_cards += 1;
 	}
 	
