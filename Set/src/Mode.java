@@ -7,6 +7,7 @@ public class Mode extends JApplet{
 	private Drawing dwg;
 	private Container cp;
 	private Command cmd;
+	private Deck deck;
 	
 	public static final int canvasX = 50;		//The x-coordinate for the canvas panel, on which the cards are draw
 	public static final int canvasY = 50;		//The y-coordinate for the canvas panel, on which the cards are draw
@@ -46,8 +47,16 @@ public class Mode extends JApplet{
 		cp.repaint();
 		cp.validate();
 		
-		Command cmd = new NewTwelveCardsCmd();
-		cmd.executeClick(dwg);
+		//Create Deck
+		deck = Deck.getUniqueInstance();
+		//Initialize deck 
+		deck.shuffle();
+		
+		//Add 12 cards
+		for (int i = 0; i < 12; i++) {
+			  Card card = deck.deal();
+			  dwg.addCard(card);
+		}
 	}
 	
 	public Drawing getDrawing() {

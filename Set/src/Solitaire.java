@@ -5,8 +5,11 @@ import javax.swing.*;
 
 
 public class Solitaire extends Mode {
-	private static final long serialVersionUID = 1L;private Drawing dwg;
+	private static final long serialVersionUID = 1L;
+	private Drawing dwg;
 	private Command cmd;
+	private Container cp;
+	private Deck deck;
 	
 	/**
 	 * Constructor 
@@ -16,6 +19,7 @@ public class Solitaire extends Mode {
 	public Solitaire(Drawing dwg, Container cp) {
 		super(dwg, cp);
 		cmd = new Command();
+		
 		
 		//Make JButton objects for the two modes of play
 		JButton hintButton = new JButton("Hint");
@@ -36,6 +40,7 @@ public class Solitaire extends Mode {
 		cp.add(optionPanel, BorderLayout.WEST);
 		cp.repaint();
 		cp.validate();
+		
 	}
 	
 	
