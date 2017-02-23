@@ -10,13 +10,7 @@ import java.util.ArrayList;
  */
 
 public class ForwardCmd extends Command {
-	private ArrayList<Card> setOfThree = new ArrayList<Card>(); // The three cards, which make a set
-
-	public ForwardCmd (ArrayList<Card> arr) {
-		for (int i = 0; i < 3; i++) {
-			setOfThree.add(i, arr.get(i));
-		}
-	}
+	private ArrayList<Card> table = new ArrayList<Card>(); // The three cards, which make a set
 
 	/**
 	 * When the forward arrow button is clicked, display another set that exists
@@ -26,9 +20,10 @@ public class ForwardCmd extends Command {
 	 * @param dwg the drawing 
 	 */
 	public void executeClick(Drawing dwg) {
-		for (int i = 0; i < setOfThree.size(); i++) {
-			int tracker = dwg.compareForIndex(setOfThree.get(i));
-			dwg.getCard(tracker).setHighlighted();
+		table = dwg.getTable();
+		ArrayList<Card> setOfThree = table.getOneSet(); //Use the array received only highlight one index
+		for (int i = 0; i < 3; i++) {
+			setOfThree.get(i).setHighlighted();
 		}
-	}
+	}//Need a way to keep track of the index I took the cards out of
 }

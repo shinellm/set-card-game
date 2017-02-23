@@ -10,6 +10,7 @@ import java.util.ArrayList;
 
 public class HintCmd extends Command {
 	private ArrayList<Card> table; //The current cards at play
+	
 	/**
 	 * When the "Hint" button is clicked, check the cards at play
 	 * and determine if there is a set. If there is a set, highlight
@@ -20,8 +21,9 @@ public class HintCmd extends Command {
 	 */
 	public void executeClick(Drawing dwg) {
 		table = dwg.getTable();
-		ArrayList<ArrayList<Card>> set = table.getAllSets(); //Use the array received only highlight one index
-		set.setHighlighted();  
-		
+		ArrayList<Card> set = table.getOneSet(); //Use the array received only highlight one index
+		for (int i = 0; i < 3; i++) {
+			set.get(i).setHighlighted();
+		} 
 	}
 }
