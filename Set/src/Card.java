@@ -124,19 +124,19 @@ public class Card{
 
 		if (shape == RECT) {
 			if (count == count1 || count == count3) {
-				s1 = new Rect(x + 15, y + 27, WIDTH, HEIGHT, page_color);
+				s1 = new Rect(x + 15, y + 27, SHAPE_WIDTH, SHAPE_HEIGHT, page_color);
 			} 
 			if (count == count2 || count == count3) {
-				s2 = new Rect(x + 15, y + 6, WIDTH, HEIGHT, page_color);
-				s3 = new Rect(x + 15, y + 48, WIDTH, HEIGHT, page_color);
+				s2 = new Rect(x + 15, y + 6, SHAPE_WIDTH, SHAPE_HEIGHT, page_color);
+				s3 = new Rect(x + 15, y + 48, SHAPE_WIDTH, SHAPE_HEIGHT, page_color);
 			}
 		} else if (shape == ELLIPSE) {
 			if (count == count1 || count == count3) {
-				s1 = new Ellipse(x + 15, y + 27, WIDTH, HEIGHT, page_color);
+				s1 = new Ellipse(x + 15, y + 27, SHAPE_WIDTH, SHAPE_HEIGHT, page_color);
 			} 
 			if (count == count2 || count == count3){
-				s2 = new Ellipse(x + 15, y + 6, WIDTH, HEIGHT, page_color);
-				s3 = new Ellipse(x + 15, y + 48, WIDTH, HEIGHT, page_color);
+				s2 = new Ellipse(x + 15, y + 6, SHAPE_WIDTH, SHAPE_HEIGHT, page_color);
+				s3 = new Ellipse(x + 15, y + 48, SHAPE_WIDTH, SHAPE_HEIGHT, page_color);
 			}
 		} else {
 
