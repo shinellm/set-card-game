@@ -11,12 +11,14 @@ import java.util.ArrayList;
 public class Drawing {
 	private ArrayList<Card> onTable = new ArrayList<Card>();
 	private int num_cards;
+	private int highlight;
 	
 	private final int CARDS_PER_ROW = 3;
 	private final int MAX_ARR_LEN = 15;	//The most cards the ArrayList can hold
 	
 	public Drawing () {
 		num_cards = 0;
+		highlight = 0;
 	}
 	
 	/**
@@ -208,7 +210,30 @@ public class Drawing {
 		
 		return false;
 	}
-	
+
+	/**
+	 * Gets the current value of highlight
+	*/
+	public int getHighlight() {
+		return highlight();
+	}
+
+	public void incrementHighlight() {
+		highlight += 1;
+	}
+
+	public void decrementHighlight() {
+		highlight = highlight - 1;
+	}
+
+	/**
+	 * Sets highlight back to zero, for when
+	 * a set of 12 new cards are dealt in Tutorial
+	*/
+	public void newHighlight() {
+		highlight = 0;
+	}
+
 	/**
 	 * Draws (or redraws) each Card, based on the latest changes 
 	 * per the shapes' attributes/params.
