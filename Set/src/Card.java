@@ -67,6 +67,7 @@ public class Card{
 		x = x_coor;					//Sets the x-coordinate of this Card
 		y = y_coor;					//Sets the y-coordinate of this Card
 		Color savedColor = page.getColor();
+		page.setColor(Color.white);
 		page.fillRect(x, y, WIDTH, HEIGHT);
 
 		if (highlighted == true) {
