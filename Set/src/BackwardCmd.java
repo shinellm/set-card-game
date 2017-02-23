@@ -10,7 +10,7 @@ import java.util.ArrayList;
  */
 
 public class BackwardCmd extends Command {
-	private ArrayList<Card> table = new ArrayList<Card>(); // The three cards, which make a set
+	private ArrayList<ArrayList<Card>> sets; // The three cards, which make a set
 
 	/**
 	 * When the backward arrow button is clicked, display the previously seen set that exists
@@ -20,10 +20,10 @@ public class BackwardCmd extends Command {
 	 * @param dwg the drawing 
 	 */
 	public void executeClick(Drawing dwg) {
-		table = dwg.getTable();
-		ArrayList<Card> setOfThree = table.getOneSet(); //Use the array received only highlight one index
-		for (int i = 0; i < 3; i++) {
-			setOfThree.get(i).setHighlighted();
+		sets = dwg.getAllSets();
+		ArrayList<Card> setToHighlight = sets.get(0);
+		for (int i = 0; i < 3; i++) { //Use the multi-dimensional ArrayList received to highlight only one index
+			setToHighlight.get(i).setHighlighted();
 		}
 	}//Need a way to keep track of the index I took the cards out of
 }
