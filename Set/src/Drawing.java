@@ -161,6 +161,17 @@ public class Drawing {
 	}
 	
 	/**
+	* Returns the ArrayList of all possible sets 
+	* out of the existing cards on the table
+	*
+	* @return: the ArrayList of each ArrayList that
+	* represents each set on the table.
+	*/
+	public ArrayList<ArrayList<Card>> getAllSets() {
+
+	}
+	
+	/**
 	 * Helper method that checks whether or not given 
 	 * three values, they are either all the same or 
 	 * all different
