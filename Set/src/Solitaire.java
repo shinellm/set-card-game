@@ -6,9 +6,9 @@ import javax.swing.*;
 
 public class Solitaire extends Mode {
 	private static final long serialVersionUID = 1L;
-	private Drawing dwg;
 	private Command cmd;
-	private Container cp;
+	private Drawing d;
+	private Container c;
 	private Deck deck;
 	
 	/**
@@ -19,7 +19,8 @@ public class Solitaire extends Mode {
 	public Solitaire(Drawing dwg, Container cp) {
 		super(dwg, cp);
 		cmd = new Command();
-		
+		d = dwg;
+		c = cp;
 		
 		//Make JButton objects for the two modes of play
 		JButton hintButton = new JButton("Hint");
@@ -38,9 +39,9 @@ public class Solitaire extends Mode {
 		optionPanel.add(Box.createRigidArea(new Dimension(0,5)));
 		optionPanel.add(add3CardsButton);
 		
-		cp.add(optionPanel, BorderLayout.EAST);
-		cp.repaint();
-		cp.validate();
+		c.add(optionPanel, BorderLayout.EAST);
+		c.repaint();
+		c.validate();
 		
 	}
 	
@@ -48,16 +49,16 @@ public class Solitaire extends Mode {
 	private class HintButtonListener implements ActionListener {
 		public void actionPerformed(ActionEvent event) {
 			cmd = new HintCmd();
-			cmd.executeClick(dwg);
-			repaint();
+			cmd.executeClick(d);
+			c.repaint();
 		}
 	}
 		
 	private class Add3CardsButtonListener implements ActionListener {
 		public void actionPerformed(ActionEvent event) {
 			cmd = new AddThreeCmd();
-			cmd.executeClick(dwg);
-			repaint();
+			cmd.executeClick(d);
+			c.repaint();
 			} 
 	}
 	

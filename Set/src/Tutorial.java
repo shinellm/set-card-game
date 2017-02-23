@@ -17,6 +17,8 @@ import java.util.ArrayList;
 public class Tutorial extends Mode {
 	private static final long serialVersionUID = 1L;private Drawing dwg;
 	private Command cmd;
+	private Drawing d;
+	private Container c;
 
 	
 	/**
@@ -27,6 +29,8 @@ public class Tutorial extends Mode {
 	public Tutorial(Drawing dwg, Container cp){
 		super(dwg, cp);
 		cmd = new Command();
+		d = dwg;
+		c = cp;
 		
 		//Make JButton objects for the two modes of play
 		JButton forwardButton = new JButton("Previous Set");
@@ -53,9 +57,9 @@ public class Tutorial extends Mode {
 		optionPanel.add(next12Button);
 		
 				
-		cp.add(optionPanel, BorderLayout.EAST);
-		cp.repaint();
-		cp.validate();
+		c.add(optionPanel, BorderLayout.EAST);
+		c.repaint();
+		c.validate();
 	}
 
 	private class ForwardButtonListener implements ActionListener {
@@ -81,8 +85,8 @@ public class Tutorial extends Mode {
 	private class Next12ButtonListener implements ActionListener {
 		public void actionPerformed(ActionEvent event) {
 			cmd = new NewTwelveCardsCmd();
-			cmd.executeClick(dwg);
-			repaint();
+			cmd.executeClick(d);
+			c.repaint();
 		}
 	}
 }
