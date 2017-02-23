@@ -104,8 +104,7 @@ public class Mode extends JApplet{
 	     * current command.
 	     */
 	    public void mouseClicked(MouseEvent event) {
-	    		cmd = new SelectThreeCardsCmd();
-	    		cmd.addToSet(getDrawing(), event.getPoint());
+	    		
 	    		repaint();
 	    }
 

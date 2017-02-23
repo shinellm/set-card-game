@@ -17,8 +17,7 @@ import java.util.ArrayList;
 public class Tutorial extends Mode {
 	private static final long serialVersionUID = 1L;private Drawing dwg;
 	private Command cmd;
-	private int multiArrIndex;
-	private ArrayList<ArrayList<Card>> allSets= new ArrayList<ArrayList<Card>>();
+
 	
 	/**
 	 * Constructor 
@@ -28,14 +27,12 @@ public class Tutorial extends Mode {
 	public Tutorial(Drawing dwg, Container cp){
 		super(dwg, cp);
 		cmd = new Command();
-		multiArrIndex = 0;
 		
 		//Make JButton objects for the two modes of play
 		JButton forwardButton = new JButton("Previous Set");
 		JButton backwardButton = new JButton("Next Set");
 		JButton next12Button = new JButton("Next 12 Cards");
 		
-		backwardButton.setEnabled(false);	//Cannot allow the user to try and call negative indices in the array
 				
 		//Add listeners to the two Modes subclass buttons
 		forwardButton.addActionListener(new ForwardButtonListener());
@@ -64,21 +61,6 @@ public class Tutorial extends Mode {
 			Component [] components = panel.getComponents();
 			JButton button1 = (JButton)components[1];
 			
-			if ((multiArrIndex - 1) >= 0) {
-				for (int i = 0; i < 3; i++) {
-					allSets.get(multiArrIndex - 1).get(i).unsetHighlighted();
-				}
-			}
-			
-				button1.setEnabled(true);
-				cmd = new ForwardCmd(allSets.get(multiArrIndex));
-				cmd.executeClick(dwg);
-				multiArrIndex += 1;
-				repaint();
-			
-			if (multiArrIndex == (allSets.size() - 1)) {
-				button0.setEnabled(false);
-			}
 		}
 	}
 	
@@ -89,21 +71,6 @@ public class Tutorial extends Mode {
 			Component [] components = panel.getComponents();
 			JButton button1 = (JButton)components[0];
 			
-			if ((multiArrIndex + 1) <= (allSets.size() - 1)) {
-				for (int i = 0; i < 3; i++) {
-					allSets.get(multiArrIndex + 1).get(i).unsetHighlighted();
-				}
-			}
-			
-				button1.setEnabled(true);
-				cmd = new BackwardCmd(allSets.get(multiArrIndex));
-				cmd.executeClick(dwg);
-				multiArrIndex = multiArrIndex - 1;
-				repaint();
-			
-			if (multiArrIndex == 0) {
-				button0.setEnabled(false);
-			}
 		}
 	}
 	
