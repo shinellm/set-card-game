@@ -74,7 +74,7 @@ public class Card{
 			page.setColor(Color.red);
 			page.drawRect(x,  y, WIDTH, HEIGHT);
 			page.drawRect(x - 1,  y - 1, WIDTH + 1, HEIGHT + 1);
-			page.drawRect(x - 2, y - 2, WIDTH + 2, HEIGHT + 2);
+			page.drawRect(x - 2,  y - 2, WIDTH + 2, HEIGHT + 2);
 		} else {
 			page.setColor(Color.black);
 			page.drawRect(x,  y, WIDTH, HEIGHT);
