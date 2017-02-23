@@ -39,14 +39,16 @@ public class Triangle extends Shape {
 		  if (shading == Card.STRIPED) {
 			  page.setColor(Color.white);
 			  int minx1 = Math.min(x_coords[0], x_coords[2]);
-			  int minx = Math.min(minx1,  x_coords[2]);
-			  int miny = Math.min(y_coords[0], y_coords[1]);
-			  int height = Math.max(y_coords[0],  y_coords[1]) - miny;
-			  int i = 0;		//To calculate ever-decreasing x-coordinate
+			  int minx = Math.min(minx1,  x_coords[1]);
+			  int maxx1 = Math.max(x_coords[0], x_coords[1]);
+			  int maxx = Math.max(maxx1, x_coords[2]);
+			  int miny1 = Math.min(y_coords[0], y_coords[1]);
+			  int miny = Math.min(miny1, y_coords[2]);
+			  int maxy1 = Math.max(y_coords[0], y_coords[1]);
+			  int maxy = Math.max(maxy1, y_coords[2]);
 			  int j = miny;		//To calculate ever-increasing y-coordinate
-			  while (j < height) {
-				  page.drawLine(minx + i, j, ((i * -1) * 2) + minx, j);
-				  i = i - 2;
+			  while (j < maxy) {
+				  page.drawLine(minx, j, maxx, j);
 				  j += 3;
 			  }
 		  }
