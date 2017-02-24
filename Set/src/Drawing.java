@@ -128,7 +128,7 @@ public class Drawing {
 	 * @return: true if the two Cards' four fields
 	 * all hold the same values, false otherwise
 	 */
-	private boolean compareCards(Card card1, Card card2) {
+	public boolean compareCards(Card card1, Card card2) {
 		if (card1.getColor() == card2.getColor()) {
 			if (card1.getShape() == card2.getShape()) {
 				if (card1.getCount() == card2.getCount()) {

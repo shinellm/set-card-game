@@ -22,22 +22,24 @@ public class ForwardCmd extends Command {
 	 */
 	public void executeClick(Drawing dwg) {
 		sets = dwg.getAllSets();
+		
 		if (dwg.getHighlight() != sets.size()) {
 			ArrayList<Card> setToHighlight = sets.get(dwg.getHighlight());
-			
-			for (int i = 0; i < 3; i++) { //Use the multi-dimensional ArrayList received to highlight only one index
-				setToHighlight.get(i).setHighlighted();
-			}
 			
 			if (dwg.getHighlight()-1 >= 0) {
 				setToDeselect = sets.get(dwg.getHighlight()-1);
 				
 				for (int i = 0; i < 3; i++) { //Deselect the previously highlighted cards
-					if (setToDeselect.get(i) != setToHighlight.get(i)) {
+					if (dwg.compareCards(setToDeselect.get(i),setToHighlight.get(i)) == false) {
 						setToDeselect.get(i).unsetHighlighted();
 					}
 				}
 			}
+			
+			for (int i = 0; i < 3; i++) { //Use the multi-dimensional ArrayList received to highlight only one index
+				setToHighlight.get(i).setHighlighted();
+			}
+			
 			dwg.incrementHighlight(); //Increments the index I took the cards out of and keeps track of the new index
 		}
 	}
