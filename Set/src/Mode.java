@@ -79,7 +79,7 @@ public class Mode extends JApplet{
 		public void actionPerformed(ActionEvent event) {
 			cmd = new QuitCmd();
 			cmd.executeClick(dwg);
-			repaint();
+			cp.repaint();
 		}
 	}
 		
@@ -87,7 +87,7 @@ public class Mode extends JApplet{
 		public void actionPerformed(ActionEvent event) {
 			cmd = new RestartCmd();
 			cmd.executeClick(dwg);
-			repaint();
+			cp.repaint();
 		}
 	}
 	
