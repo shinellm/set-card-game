@@ -12,7 +12,7 @@ import java.util.ArrayList;
 
 public class SelectThreeCardsCmd extends Command {
 	private ArrayList<Card> threeCards = new ArrayList<Card>(); // the index of the three cards selected in Solitaire
-	
+
 	/**
 	 * When a card is selected in Solitaire mode, the card's index is store in the
 	 * the array. The card itself is also highlighted on the table. Once there are three
@@ -24,7 +24,7 @@ public class SelectThreeCardsCmd extends Command {
 	 * @param dwg the drawing 
 	 */
 	public void executeClick(Drawing dwg) {	}
-	
+
 	public void addToSet(Drawing dwg, Point p) {
 		int i = dwg.searchTable(p); // Find the index of the card containing p.
 		Card c = dwg.getCard(i); // Find the card at index i.
@@ -40,11 +40,18 @@ public class SelectThreeCardsCmd extends Command {
 				// We have three cards in our ArrayList.
 				if (dwg.isASet(threeCards) == true && dwg.getTableSize() == 12) {
 					//ArrayList contains a proper set and 12 cards on table
-					for (int j = 0; j < 3; j++) {
-						Card card = deck.getPointer();
-						int k = dwg.compareForIndex(threeCards.get(j));
-						dwg.replaceCard(k, card);
-						deck.deal();
+					if (deck.getPointerIndex() != 81) { //Checks if there enough cards in the deck to replace the selected set
+						for (int j = 0; j < 3; j++) {
+							Card card = deck.getPointer();
+							int k = dwg.compareForIndex(threeCards.get(j));
+							dwg.replaceCard(k, card);
+							deck.deal();
+						}
+					}
+					else {
+						for (int j = 0; j < 3; j++) {
+							dwg.removeCard(dwg.compareForIndex(threeCards.get(j)));
+						}
 					}
 				} else if (dwg.isASet(threeCards) == true && ((dwg.getTableSize() == 15) || (dwg.getTableSize() < 12))) {
 					//ArrayList contains a proper set and 15 cards on table
