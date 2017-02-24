@@ -2,7 +2,7 @@
  * Triangle.java
  * Class for a Triangle
  * 
- * Written by Rory, 16 February 2017
+ * @author Rory Bennett
  */
 import java.awt.*;
 import java.util.Arrays;

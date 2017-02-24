@@ -3,7 +3,7 @@
  * Initial page for an object-oriented GUI
  * for playing Set.
  * 
- * Written for CSC-260 Project 2
+ * @author Rory Bennett
  */
 import java.awt.*;
 import java.awt.event.*;

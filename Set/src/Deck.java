@@ -3,7 +3,7 @@
  * Represents a Deck of cards for the game
  * of Set
  * 
- * Written by Rory, on February 16, 2017
+ * @author Rory Bennett
  */
 
 import java.util.ArrayList;

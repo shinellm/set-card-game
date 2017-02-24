@@ -2,6 +2,8 @@
  * Drawing.java
  * Holds and draws all graphical objects
  * in the Applet
+ * 
+ * @Rory Bennett
  */
 import java.awt.*;
 import java.util.ArrayList;

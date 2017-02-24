@@ -2,6 +2,8 @@
  * Card.java
  * Represents a single Set card in the deck,
  * attributes and all
+ * 
+ * @author Rory Bennett
  */
 import java.awt.*;
 
