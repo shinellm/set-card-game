@@ -122,7 +122,7 @@ public class Mode extends JApplet{
 	     * current command.
 	     */
 	    public void mouseClicked(MouseEvent event) {
-		if (toSelectOrNot == true) {
+		if (toSelectOrNot) {
 	    		Point p = event.getPoint();
 	    		selectCmd.addToSet(dwg, p);
 	    		repaint();
