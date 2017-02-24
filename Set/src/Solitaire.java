@@ -10,6 +10,7 @@ public class Solitaire extends Mode {
 	private Drawing d;
 	private Container c;
 	
+	
 	/**
 	 * Constructor 
 	 * @param cp the container object 
@@ -21,17 +22,16 @@ public class Solitaire extends Mode {
 		cmd = new Command();
 		d = dwg;
 		c = cp;
-		
-		//Make JButton objects for the two modes of play
+	
+		//Make JButton objects 
 		JButton hintButton = new JButton("Hint");
 		JButton add3CardsButton = new JButton("Add 3 Cards");
 				
-		//Add listeners to the two Modes subclass buttons
+		//Add listeners to buttons
 		hintButton.addActionListener(new HintButtonListener());
 		add3CardsButton.addActionListener(new Add3CardsButtonListener());
-				
-		//The two buttons will be adjacent to one another, in one row of two
-		JPanel optionPanel = new JPanel(); //Holds the buttons horizontally
+		
+		JPanel optionPanel = this.optionPanel;
 		optionPanel.setLayout(new BoxLayout(optionPanel, BoxLayout.PAGE_AXIS));
 		hintButton.setBackground(Color.cyan);
 		add3CardsButton.setBackground(Color.cyan);

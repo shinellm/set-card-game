@@ -33,19 +33,18 @@ public class Tutorial extends Mode {
 		d = dwg;
 		c = cp;
 		
-		//Make JButton objects for the two modes of play
+		
 		JButton forwardButton = new JButton("Next Set");
 		JButton backwardButton = new JButton("Previous Set");
 		JButton next12Button = new JButton("Next 12 Cards");
 		
 				
-		//Add listeners to the two Modes subclass buttons
+		
 		forwardButton.addActionListener(new ForwardButtonListener());
 		backwardButton.addActionListener(new BackwardButtonListener());
 		next12Button.addActionListener(new Next12ButtonListener());
 				
-		//The two buttons will be adjacent to one another, in one row of two
-		JPanel optionPanel = new JPanel(); //Holds the buttons horizontally
+		JPanel optionPanel = this.optionPanel;
 		optionPanel.setLayout(new BoxLayout(optionPanel, BoxLayout.PAGE_AXIS));
 		forwardButton.setBackground(Color.cyan);
 		backwardButton.setBackground(Color.cyan);

@@ -10,6 +10,8 @@ public class Mode extends JApplet{
 	private SelectThreeCardsCmd selectCmd;
 	private Deck deck;
 	private boolean toSelectOrNot;
+	private String modeName;
+	protected JPanel optionPanel;
 	
 	public static final int canvasX = 50;		//The x-coordinate for the canvas panel, on which the cards are draw
 	public static final int canvasY = 50;		//The y-coordinate for the canvas panel, on which the cards are draw
@@ -26,28 +28,27 @@ public class Mode extends JApplet{
 		cmd = new Command();
 		selectCmd = new SelectThreeCardsCmd();
 		toSelectOrNot = false;
+		optionPanel = new JPanel();
 		
 		CanvasPanel canvasPanel = new CanvasPanel();
 		canvasPanel.setBackground(Color.cyan);
 		
-		//Make JButton objects for the two modes of play
-		JButton homeButton = new JButton("Home");
+		
 		JButton restartButton = new JButton("Restart");
+		JButton switchButton = new JButton("Switch Mode");
 		
-		//Add listeners to the two Modes subclass buttons
-		homeButton.addActionListener(new HomeButtonListener());
 		restartButton.addActionListener(new RestartButtonListener());
+		switchButton.addActionListener(new SwitchButtonListener());
 		
-		//The two buttons will be adjacent to one another, in one row of two
-		JPanel optionPanel = new JPanel(); //Holds the buttons horizontally
-		optionPanel.setLayout(new FlowLayout());
-		homeButton.setBackground(Color.CYAN);
+		JPanel GeneralOptionPanel = new JPanel();
+		GeneralOptionPanel.setLayout(new FlowLayout());
 		restartButton.setBackground(Color.CYAN);
-		optionPanel.add(homeButton);
-		optionPanel.add(restartButton);
-		optionPanel.setBackground(Color.white);
+		switchButton.setBackground(Color.CYAN);
+		GeneralOptionPanel.add(restartButton);
+		GeneralOptionPanel.add(switchButton);
+		GeneralOptionPanel.setBackground(Color.white);
 		
-		cp.add(optionPanel, BorderLayout.NORTH);
+		cp.add(GeneralOptionPanel, BorderLayout.NORTH);
 		cp.add(canvasPanel, BorderLayout.CENTER);
 		cp.repaint();
 		cp.validate();
@@ -62,6 +63,8 @@ public class Mode extends JApplet{
 			  Card card = deck.deal();
 			  dwg.addCard(i, card);
 		}
+		
+		modeName = this.getClass().getName();
 	}
 
 	/**
@@ -75,13 +78,7 @@ public class Mode extends JApplet{
 		toSelectOrNot = set;
 	}
 	
-	private class HomeButtonListener implements ActionListener {
-		public void actionPerformed(ActionEvent event) {
-			cmd = new QuitCmd();
-			cmd.executeClick(dwg);
-			cp.repaint();
-		}
-	}
+	
 		
 	private class RestartButtonListener implements ActionListener {
 		public void actionPerformed(ActionEvent event) {
@@ -90,6 +87,31 @@ public class Mode extends JApplet{
 			cp.repaint();
 		}
 	}
+	
+	private class SwitchButtonListener implements ActionListener {
+		public void actionPerformed(ActionEvent event) {
+			JButton button = (JButton)event.getSource();
+			JPanel panel = (JPanel)button.getParent();
+			panel.remove(0);
+			panel.repaint();
+			panel.validate();
+			optionPanel.remove(0);
+			optionPanel.repaint();
+			optionPanel.validate();
+			Container c = (Container)panel.getParent();
+			c.remove(0);
+			
+			dwg = new Drawing();
+			
+			if(modeName == "Solitaire"){
+				new Tutorial(dwg, cp);
+			}
+			else{
+				new Solitaire(dwg, cp); 
+			}
+		}
+	}
+	
 	
 	/** 
 	   * CanvasPanel is the class upon which we actually draw.  It listens

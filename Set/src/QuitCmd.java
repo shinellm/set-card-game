@@ -16,4 +16,6 @@ public class QuitCmd extends Command {
    * @param dwg the drawing 
    */
   public void executeClick(Drawing dwg) { }
+  	
+  	
 }

@@ -16,6 +16,10 @@ public class HomePage extends JApplet {
 	private final int APPLET_WIDTH = 700, APPLET_HEIGHT = 1000;
 	private Drawing dwg;
 	private Mode mode;
+	private Container cp;
+	private JPanel modePanel;
+	private JLabel setLabel;
+
 	
 	/**
 	 * Sets up the first two buttons, with which the user
@@ -33,8 +37,8 @@ public class HomePage extends JApplet {
 		solitaireButton.addActionListener(new SolitaireButtonListener());
 		
 		//The two buttons will be adjacent to one another, in one row of two
-		JPanel modePanel = new JPanel(); //Holds the buttons horizontally
-		JLabel setLabel = new JLabel("Choose Mode:");
+		modePanel = new JPanel(); //Holds the buttons horizontally
+		setLabel = new JLabel("Choose Mode:");
 		modePanel.setLayout(new FlowLayout());
 		modePanel.add(setLabel);
 		tutorialButton.setBackground(Color.green);
@@ -44,11 +48,19 @@ public class HomePage extends JApplet {
 		
 		//Container objects enable control of the location of panels
 		//contained within it.
-		Container cp = getContentPane();
+		cp = getContentPane();
 		cp.setLayout(new BorderLayout());
 		cp.add(modePanel, BorderLayout.CENTER);
 		mode = null;
 		setSize(APPLET_WIDTH, APPLET_HEIGHT);
+		cp.repaint();
+	}
+	
+	public void home(){
+		cp.add(modePanel, BorderLayout.CENTER);
+		cp.repaint();
+		
+		
 	}
 	
 	private class TutorialButtonListener implements ActionListener {
