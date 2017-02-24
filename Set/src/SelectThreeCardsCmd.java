@@ -53,10 +53,16 @@ public class SelectThreeCardsCmd extends Command {
 							dwg.removeCard(dwg.compareForIndex(threeCards.get(j)));
 						}
 					}
-				} else if (dwg.isASet(threeCards) == true && ((dwg.getTableSize() == 15) || (dwg.getTableSize() < 12))) {
+				} 
+				else if (dwg.isASet(threeCards) == true && ((dwg.getTableSize() == 15) || (dwg.getTableSize() < 12))) {
 					//ArrayList contains a proper set and 15 cards on table
 					for (int j = 0; j < 3; j++) {
 						dwg.removeCard(dwg.compareForIndex(threeCards.get(j)));
+					}
+				}
+				else if (dwg.isASet(threeCards) != true); {
+					for (int j = 0; j < 3; j++) { //Deselect the previously highlighted cards
+							threeCards.get(j).unsetHighlighted();
 					}
 				}
 				// Now we clear the ArrayList and can select 3 more cards.

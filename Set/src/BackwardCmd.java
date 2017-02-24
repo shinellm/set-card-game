@@ -36,7 +36,6 @@ public class BackwardCmd extends Command {
 			for (int i = 0; i < 3; i++) { //Deselect the previously highlighted cards
 				if (setToDeselect.get(i) != setToHighlight.get(i)) {
 						setToDeselect.get(i).unsetHighlighted();
-						System.out.println("Backward: Card " + i + " is a different card? " + (setToDeselect.get(i) != setToHighlight.get(i)));
 				}
 			}
 		}
