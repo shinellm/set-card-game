@@ -23,5 +23,6 @@ public class RestartCmd extends Command {
 			Card card = deck.deal();
 			dwg.replaceCard(i, card);
 		}
+		dwg.newHighlight();
 	}
 }
