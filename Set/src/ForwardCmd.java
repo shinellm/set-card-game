@@ -34,7 +34,8 @@ public class ForwardCmd extends Command {
 				
 				for (int i = 0; i < 3; i++) { //Deselect the previously highlighted cards
 					if (setToDeselect.get(i) != setToHighlight.get(i)) {
-						setToDeselect.get(i).unsetHighlighted();	
+						setToDeselect.get(i).unsetHighlighted();
+						System.out.println("Forward: Card " + i + " is a different card? " + (setToDeselect.get(i) != setToHighlight.get(i)));
 					}
 				}
 			}
