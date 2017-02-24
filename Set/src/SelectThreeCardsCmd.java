@@ -38,29 +38,32 @@ public class SelectThreeCardsCmd extends Command {
 			else {
 				threeCards.add(c);
 				// We have three cards in our ArrayList.
-				if (dwg.isASet(threeCards) == true && dwg.getTableSize() == 12) {
-					//ArrayList contains a proper set and 12 cards on table
-					if (deck.getPointerIndex() != 81) { //Checks if there enough cards in the deck to replace the selected set
-						for (int j = 0; j < 3; j++) {
-							Card card = deck.getPointer();
-							int k = dwg.compareForIndex(threeCards.get(j));
-							dwg.replaceCard(k, card);
-							deck.deal();
+				if (dwg.isASet(threeCards)) {
+					if (dwg.getTableSize() == 12) {
+						//ArrayList contains a proper set and 12 cards on table
+						if (deck.getPointerIndex() != 81) { //Checks if there enough cards in the deck to replace the selected set
+							for (int j = 0; j < 3; j++) {
+								Card card = deck.getPointer();
+								int k = dwg.compareForIndex(threeCards.get(j));
+								dwg.replaceCard(k, card);
+								deck.deal();
+							}
 						}
-					}
-					else {
+						else {
+							for (int j = 0; j < 3; j++) {
+								dwg.removeCard(dwg.compareForIndex(threeCards.get(j)));
+							}
+						}
+					} 
+					else if (((dwg.getTableSize() == 15) || (dwg.getTableSize() < 12))) {
+						//ArrayList contains a proper set and 15 cards on table
 						for (int j = 0; j < 3; j++) {
 							dwg.removeCard(dwg.compareForIndex(threeCards.get(j)));
 						}
 					}
-				} 
-				else if (dwg.isASet(threeCards) == true && ((dwg.getTableSize() == 15) || (dwg.getTableSize() < 12))) {
-					//ArrayList contains a proper set and 15 cards on table
-					for (int j = 0; j < 3; j++) {
-						dwg.removeCard(dwg.compareForIndex(threeCards.get(j)));
-					}
+					dwg.notShowingHint();
 				}
-				else if (dwg.isASet(threeCards) != true); {
+				else if ((dwg.getTableSize() == 15) || (dwg.getTableSize() < 12)) {
 					for (int j = 0; j < 3; j++) { //Deselect the previously highlighted cards
 							threeCards.get(j).unsetHighlighted();
 					}

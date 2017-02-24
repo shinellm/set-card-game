@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 public class HintCmd extends Command {
 	private ArrayList<ArrayList<Card>> sets; //The current cards at play
-
+	
 	/**
 	 * When the "Hint" button is clicked, check the cards at play
 	 * and determine if there is a set. If there is a set, highlight
@@ -23,9 +23,14 @@ public class HintCmd extends Command {
 		sets = dwg.getAllSets();
 		if (sets.isEmpty() != true) {
 			ArrayList<Card> setToHighlight = sets.get(0);
-			for (int i = 0; i < 3; i++) { //Use the multi-dimensional ArrayList received to highlight only one index
-				setToHighlight.get(i).setHighlighted();
+			
+			if (dwg.isShowingHint() == false) { //Is a hint already being shown?
+				for (int i = 0; i < 3; i++) { //Use the multi-dimensional ArrayList received to highlight only one index
+					setToHighlight.get(i).setHighlighted();
+				}
+				setToHighlight.clear();
+				dwg.showingHint();
 			}
-		} 
+		}
 	}
 }

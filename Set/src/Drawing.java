@@ -12,6 +12,7 @@ import java.util.ArrayList;
 
 public class Drawing {
 	private ArrayList<Card> onTable = new ArrayList<Card>();
+	private boolean showingHint;
 	private int num_cards;
 	private int highlight;
 	
@@ -21,6 +22,7 @@ public class Drawing {
 	public Drawing () {
 		num_cards = 0;
 		highlight = 0;
+		showingHint = false;
 	}
 	
 	/**
@@ -235,6 +237,28 @@ public class Drawing {
 	public void newHighlight() {
 		highlight = 0;
 	}
+	
+	/**
+	 * Gets the current value of showingHint
+	*/
+	public boolean isShowingHint() {
+		return showingHint;
+	}
+	
+	/**
+	 * Sets showingHint to true.
+	*/
+	public void showingHint() {
+		showingHint = true;
+	}
+	
+	/**
+	 * Sets showingHint to false.
+	*/
+	public void notShowingHint() {
+		showingHint = false;
+	}
+	
 
 	/**
 	 * Draws (or redraws) each Card, based on the latest changes 
