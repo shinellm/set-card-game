@@ -174,7 +174,7 @@ public class Drawing {
 		ArrayList<ArrayList<Card>> allSets = new ArrayList<ArrayList<Card>>();
 		int arr_index = 0;
 		for (int i = 0; i < num_cards - 2; i++) {
-			for (int j = i + 1; j < num_cards; j++) {
+			for (int j = i + 1; j < num_cards - 1; j++) {
 				for (int k = j + 1; k < num_cards; k++) {
 					ArrayList<Card> singleSet = new ArrayList<Card>();
 					singleSet.add(0, onTable.get(i));
