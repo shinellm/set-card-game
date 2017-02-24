@@ -34,13 +34,11 @@ public class ForwardCmd extends Command {
 				
 				for (int i = 0; i < 3; i++) { //Deselect the previously highlighted cards
 					if (setToDeselect.get(i) != setToHighlight.get(i)) {
-					setToDeselect.get(i).unsetHighlighted();	
+						setToDeselect.get(i).unsetHighlighted();	
 					}
 				}
 			}
-			System.out.print("Front:" + dwg.getHighlight());
 			dwg.incrementHighlight(); //Increments the index I took the cards out of and keeps track of the new index
-			System.out.print("Next Front:" + dwg.getHighlight());
 		}
 	}
 }
