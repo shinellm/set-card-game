@@ -30,5 +30,6 @@ public class NewTwelveCardsCmd extends Command {
 				}
 			}
 		}
+		dwg.newHighlight();
 	}
 }

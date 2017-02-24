@@ -38,7 +38,9 @@ public class ForwardCmd extends Command {
 					}
 				}
 			}
+			System.out.print("Front:" + dwg.getHighlight());
 			dwg.incrementHighlight(); //Increments the index I took the cards out of and keeps track of the new index
+			System.out.print("Next Front:" + dwg.getHighlight());
 		}
 	}
 }
