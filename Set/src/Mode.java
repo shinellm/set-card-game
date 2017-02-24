@@ -90,17 +90,9 @@ public class Mode extends JApplet{
 	
 	private class SwitchButtonListener implements ActionListener {
 		public void actionPerformed(ActionEvent event) {
-			JButton button = (JButton)event.getSource();
-			JPanel panel = (JPanel)button.getParent();
-			panel.remove(0);
-			panel.repaint();
-			panel.validate();
-			optionPanel.remove(0);
-			optionPanel.repaint();
-			optionPanel.validate();
-			Container c = (Container)panel.getParent();
-			c.remove(0);
-			
+		
+			cp.removeAll();
+			cp.repaint();
 			dwg = new Drawing();
 			
 			if(modeName == "Solitaire"){
