@@ -16,8 +16,7 @@ public class AddThreeCmd extends Command {
 	 */
 	public void executeClick(Drawing dwg) {
 		Deck deck = Deck.getUniqueInstance();
-		if (dwg.getTableSize() < 15) {
-			//take 3 cards from the deck and add it to the cards on the table.
+		if (dwg.getTableSize() < 15) { //take 3 cards from the deck and add it to the cards on the table.
 			for (int i = 0; i < 3; i++) {
 				Card card = deck.deal();
 				dwg.addCard(i + 12, card);

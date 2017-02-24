@@ -36,7 +36,7 @@ public class SelectThreeCardsCmd extends Command {
 				c.setHighlighted(); // highlights the card that has been selected.
 			}
 			else {
-				threeCard.add(c);
+				threeCards.add(c);
 				// We have three cards in our ArrayList.
 				if (dwg.isASet(threeCards) == true && dwg.getTableSize() == 12) {
 					//ArrayList contains a proper set and 12 cards on table

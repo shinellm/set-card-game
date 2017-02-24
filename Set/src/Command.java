@@ -1,6 +1,4 @@
 import java.awt.Point;
-import java.util.ArrayList;
-
 
 /**
  * Command.java
@@ -10,9 +8,9 @@ import java.util.ArrayList;
  * @author Shinell Manwaring
  */
 public class Command {
-	ArrayList<Card> threeCards = new ArrayList<Card>();
-  public void executeClick(Drawing dwg) { }
-  
-	public void addToSet(Drawing dwg, Point p) {}
+
+	public void executeClick(Drawing dwg) { }
+
+	public void addToSet(Drawing dwg, Point p) { }
 }
 
