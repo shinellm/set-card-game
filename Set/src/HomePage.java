@@ -13,7 +13,7 @@ import javax.swing.*;
 public class HomePage extends JApplet {
 	private static final long serialVersionUID = 1L;
 	
-	private final int APPLET_WIDTH = 700, APPLET_HEIGHT = 1000;
+	private final int APPLET_WIDTH = 600, APPLET_HEIGHT = 600;
 	private Drawing dwg;
 	private Mode mode;
 	private Container cp;
