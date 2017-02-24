@@ -31,18 +31,20 @@ public class SelectThreeCardsCmd extends Command {
 		Deck deck = Deck.getUniqueInstance();
 
 		if (c != null) { // was there a Card containing p?
-			if (threeCards.size() < 3) {
+			if (threeCards.size() < 2) {
 				threeCards.add(c); // save this card for when there's another click
 				c.setHighlighted(); // highlights the card that has been selected.
 			}
 			else {
+				threeCard.add(c);
 				// We have three cards in our ArrayList.
 				if (dwg.isASet(threeCards) == true && dwg.getTableSize() == 12) {
 					//ArrayList contains a proper set and 12 cards on table
 					for (int j = 0; j < 3; j++) {
 						Card card = deck.getPointer();
-						int k = dwg.compareForIndex(threeCards.get(i));
+						int k = dwg.compareForIndex(threeCards.get(j));
 						dwg.replaceCard(k, card);
+						deck.deal();
 					}
 				} else if (dwg.isASet(threeCards) == true && ((dwg.getTableSize() == 15) || (dwg.getTableSize() < 12))) {
 					//ArrayList contains a proper set and 15 cards on table
