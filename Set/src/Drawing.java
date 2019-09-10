@@ -266,11 +266,9 @@ public class Drawing {
 	
 	public void setHintCards(ArrayList<Card> cards) {
 		hintCards = cards;
-		System.out.print(hintCards);
 	}
 	
 	public void clearHintCards() {
-		System.out.print(hintCards);
 		for (int i = 0; i < 3; i++) {
 			hintCards.get(i).unsetHint();
 		}
