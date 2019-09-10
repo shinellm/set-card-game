@@ -2,6 +2,8 @@
 Implement an applet for the SET card game. The applet will have two operating modes, which are 
 solitaire mode and tutorial mode.
 
+![](CSC-Project-2.gif)
+
 For information on the SET rules, go to setgame.com to see the rules in the language of your choice. 
 You can also play the Daily Set Puzzle (https://www.setgame.com/set/puzzle) or play other SET games 
 at http://smart-games.org/en/set/start/
