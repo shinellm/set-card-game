@@ -12,6 +12,8 @@ import java.util.ArrayList;
 
 public class Drawing {
 	private ArrayList<Card> onTable = new ArrayList<Card>();
+	private ArrayList<Card> highlightedCards;
+	private ArrayList<Card> hintCards;
 	private boolean showingHint;
 	private int num_cards;
 	private int highlight;
@@ -214,7 +216,24 @@ public class Drawing {
 		
 		return false;
 	}
-
+	
+	/**
+	 * Getters and setters for highlighted cards.
+	 */
+	public ArrayList<Card> getHighlightedCards() {
+		return highlightedCards;
+	}
+	
+	public void setHighlightedCards(ArrayList<Card> cards) {
+		highlightedCards = cards;
+	}
+	
+	public void clearHighlightedCards() {
+		for (int i = 0; i < 3; i++) {
+			highlightedCards.get(i).unsetHighlighted();
+		}
+	}
+	
 	/**
 	 * Gets the current value of highlight
 	*/
@@ -236,6 +255,25 @@ public class Drawing {
 	*/
 	public void newHighlight() {
 		highlight = 0;
+	}
+	
+	/**
+	 * Getters and setters for hint cards.
+	 */
+	public ArrayList<Card> getHintCards() {
+		return hintCards;
+	}
+	
+	public void setHintCards(ArrayList<Card> cards) {
+		hintCards = cards;
+		System.out.print(hintCards);
+	}
+	
+	public void clearHintCards() {
+		System.out.print(hintCards);
+		for (int i = 0; i < 3; i++) {
+			hintCards.get(i).unsetHint();
+		}
 	}
 	
 	/**

@@ -26,9 +26,10 @@ public class HintCmd extends Command {
 			
 			if (dwg.isShowingHint() == false) { //Is a hint already being shown?
 				for (int i = 0; i < 3; i++) { //Use the multi-dimensional ArrayList received to highlight only one index
-					setToHighlight.get(i).setHighlighted();
+					setToHighlight.get(i).setHint();
 				}
-				setToHighlight.clear();
+				dwg.setHintCards(setToHighlight);
+				//setToHighlight.clear();
 				dwg.showingHint();
 			}
 		}

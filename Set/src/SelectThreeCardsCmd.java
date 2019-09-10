@@ -29,8 +29,13 @@ public class SelectThreeCardsCmd extends Command {
 		int i = dwg.searchTable(p); // Find the index of the card containing p.
 		Card c = dwg.getCard(i); // Find the card at index i.
 		Deck deck = Deck.getUniqueInstance();
+		
+		if (dwg.isShowingHint() == true) {
+			dwg.clearHintCards();
+			dwg.notShowingHint();
+		}
 
-		if (c != null) { // was there a Card containing p?
+		if (c != null && threeCards.contains(c) == false) { // was there a Card containing p and is it not already selected?
 			if (threeCards.size() < 2) {
 				threeCards.add(c); // save this card for when there's another click
 				c.setHighlighted(); // highlights the card that has been selected.
@@ -63,11 +68,12 @@ public class SelectThreeCardsCmd extends Command {
 					}
 					dwg.notShowingHint();
 				}
-				else if ((dwg.getTableSize() == 15) || (dwg.getTableSize() < 12)) {
-					for (int j = 0; j < 3; j++) { //Deselect the previously highlighted cards
-							threeCards.get(j).unsetHighlighted();
-					}
+				
+				//Deselect the previously highlighted cards
+				for (int j = 0; j < 3; j++) {
+					threeCards.get(j).unsetHighlighted();
 				}
+				
 				// Now we clear the ArrayList and can select 3 more cards.
 				threeCards.clear();
 			}

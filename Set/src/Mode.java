@@ -93,6 +93,10 @@ public class Mode extends JApplet{
 		
 			cp.removeAll();
 			cp.repaint();
+			System.out.print(dwg.getTable());
+			dwg.clearHighlightedCards();
+			dwg.clearHintCards();
+			dwg.notShowingHint();
 			dwg = new Drawing();
 			
 			if(modeName == "Solitaire"){

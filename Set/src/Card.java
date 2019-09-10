@@ -24,6 +24,8 @@ public class Card{
 	private int y;		//The y-coordinate of a Card's upper-left corner
 
 	private boolean highlighted;
+	
+	private boolean hint;
 
 	public static final int RED = 1;
 	public static final int GREEN = 2; 
@@ -51,6 +53,7 @@ public class Card{
 		s2 = null;
 		s3 = null;
 		highlighted = false;
+		hint = false;
 	}
 
 	/**
@@ -74,6 +77,12 @@ public class Card{
 
 		if (highlighted == true) {
 			page.setColor(Color.red);
+			page.drawRect(x,  y, WIDTH, HEIGHT);
+			page.drawRect(x - 1,  y - 1, WIDTH + 2, HEIGHT + 2);
+			page.drawRect(x - 2,  y - 2, WIDTH + 4, HEIGHT + 4);
+		} 
+		if (hint == true) {
+			page.setColor(Color.blue);
 			page.drawRect(x,  y, WIDTH, HEIGHT);
 			page.drawRect(x - 1,  y - 1, WIDTH + 2, HEIGHT + 2);
 			page.drawRect(x - 2,  y - 2, WIDTH + 4, HEIGHT + 4);
@@ -148,7 +157,7 @@ public class Card{
 
 			if (count == count1 || count == count3) {
 				int[] x1 = {x + 15 + (SHAPE_WIDTH/2), x + 15, x + 15 + SHAPE_WIDTH};
-				int[] y1 = {y + 19 + SHAPE_WIDTH, y + 19 + (SHAPE_HEIGHT * 2), y + 19 + (SHAPE_HEIGHT * 2)};
+				int[] y1 = {y + 19 + (SHAPE_WIDTH/2), y + 10 + (SHAPE_HEIGHT * 2), y + 10 + (SHAPE_HEIGHT * 2)};
 				s1 = new Triangle(x1, y1, 3, page_color);
 			} 
 			if (count == count2 || count == count3) {
@@ -199,7 +208,16 @@ public class Card{
 	public void setHighlighted() {
 		highlighted = true;
 	}
+	
 	public void unsetHighlighted() {
 		highlighted = false;
+	}
+	
+	public void setHint() {
+		hint = true;
+	}
+	
+	public void unsetHint() {
+		hint = false;
 	}
 }

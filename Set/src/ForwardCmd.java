@@ -41,6 +41,8 @@ public class ForwardCmd extends Command {
 			}
 			
 			dwg.incrementHighlight(); //Increments the index I took the cards out of and keeps track of the new index
+			
+			dwg.setHighlightedCards(setToHighlight); //Store currently highlighted cards
 		}
 	}
 }
