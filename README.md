@@ -2,14 +2,7 @@
 
 ![](CSC-Project-2.gif)
 
-A graphical editor applet that lets users create and edit different graphical objects (i.e. rectangles, circles, and line segments). Click and drag to create shapes on the canvas and use the button based GUI do any of the following:
-* Draw shapes of different sizes
-* Move: Reposition shapes by dragging it with your mouse
-* Delete: Remove shapes from the canvas
-* Front/Back: Reorder shapes
-* Exchange: Swap the positions of two shapes
-* Color(Red/Green/Blue): Set the color of the shapes before you draw them.
-
+An applet that lets users play the set card game. If you're a beginner, try out the Tutorial mode to learn what makes a set. Once you're comfortable, try out Solitaire mode and start finding sets all on your own.
 
 ## Table of Contents  
 [Getting Started](#getting-started)
