@@ -16,7 +16,7 @@ An applet that lets users play the set card game. If you're a beginner, try out 
 
 1.  Clone the repo:
 
-        git clone https://github.com/shinellmanwaring/set-card-game.git
+        git clone https://github.com/shinellm/set-card-game.git
 
 2.  Open the project from your preferred Java editor.
 
